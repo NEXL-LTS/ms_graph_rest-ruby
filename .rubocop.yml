@@ -1,0 +1,14 @@
+require:
+  - rubocop-rspec
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+
+Style:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 25
