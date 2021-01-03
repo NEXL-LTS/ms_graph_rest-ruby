@@ -19,7 +19,7 @@ module MsGraphRest
     let(:subscriptions) { client.subscriptions }
 
     before do
-      stub_request(:post, "https://graph.microsoft.com/v1.0/users")
+      stub_request(:post, "https://graph.microsoft.com/v1.0/subscriptions")
         .to_return(status: 201, body: body, headers: {})
     end
 

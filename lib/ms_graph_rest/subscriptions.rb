@@ -57,7 +57,7 @@ module MsGraphRest
 
     def create(options)
       options = CreateOptions.new(options.to_hash)
-      CreateResponse.new(client.post("users", options))
+      CreateResponse.new(client.post("subscriptions", options))
     end
   end
 end
