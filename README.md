@@ -22,7 +22,67 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Getting a new client
+
+```ruby
+client = MsGraphRest.new_client(access_token: access_token) 
+```
+
+### Users
+
+Reference : https://docs.microsoft.com/en-us/graph/api/user-list
+
+```ruby
+# Get all users
+result = client.users.get
+result.each do |user|
+  puts user.display_name
+  puts user.mail
+  puts user.mail_nickname
+  puts user.other_mails
+  puts user.proxy_addresses
+  puts user.user_principal_name
+end
+
+# Get a user account using a sign-in name
+result = client.users.filter("identities/any(c:c/issuerAssignedId eq 'j.smith@yahoo.com')")
+                     .select("displayName,id")
+                     .get
+result.each do |user|
+  puts user.display_name
+end
+
+# Get users including their last sign-in time
+result = client.users.select("displayName,userPrincipalName,signInActivity")
+                     .get
+puts result.odata.context
+result.each do |user|
+  puts user.display_name
+  puts user.user_principal_name
+  puts user.sign_in_activity.last_sign_in_date_time
+  puts user.sign_in_activity.last_sign_in_request_id
+end
+
+# Get users including their last sign-in time
+result = client.users.select("displayName,userPrincipalName,signInActivity")
+                     .get
+result.each do |user|
+  puts user.display_name
+  puts user.user_principal_name
+  puts user.sign_in_activity.last_sign_in_date_time
+  puts user.sign_in_activity.last_sign_in_request_id
+end
+
+# List the last sign-in time of users with a specific display name
+result = client.users.filter('startswith(displayName,\'Eric\'),')
+                     .select('displayName,signInActivity')
+                     .get
+result.each do |user|
+  puts user.display_name
+  puts user.sign_in_activity.last_sign_in_date_time
+  puts user.sign_in_activity.last_sign_in_request_id
+end
+```
 
 ## Development
 
