@@ -1,5 +1,5 @@
 module MsGraphRest
-  RSpec.describe Users do
+  RSpec.describe 'Users' do
     let(:client) { MsGraphRest.new_client(access_token: "123") }
     let(:users) { client.users }
 

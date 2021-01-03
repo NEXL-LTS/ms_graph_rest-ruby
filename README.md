@@ -25,6 +25,8 @@ client = MsGraphRest.new_client(access_token: access_token)
 
 ### Users
 
+#### List
+
 Reference : https://docs.microsoft.com/en-us/graph/api/user-list
 
 ```ruby
@@ -78,6 +80,32 @@ result.each do |user|
   puts user.sign_in_activity.last_sign_in_request_id
 end
 ```
+
+### Subscriptions
+
+#### Create
+
+```ruby
+result = client.subscriptions.create(
+        change_type: "created",
+        notification_url: "https://webhook.azurewebsites.net/api/send/myNotifyClient",
+        resource: "me/mailFolders('Inbox')/messages",
+        expiration_date_time: "2016-11-20T18:23:45.9356913Z",
+        client_state: "secretClientValue"
+      )
+
+puts result.odata_context
+puts result.id
+puts result.resource
+puts result.application_id
+puts result.change_type
+puts result.change_type
+puts result.client_state
+puts result.notification_url
+puts result.expiration_date_time
+puts result.creator_id
+```
+
 
 ## Development
 
