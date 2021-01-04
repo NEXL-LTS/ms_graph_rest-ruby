@@ -10,7 +10,7 @@ module MsGraphRest
       to_recipients.map { |recipient| Profile.new(recipient.dig("emailAddress")) }.compact
     }
     property :sender, transform_with: ->(value) { Profile.new(value.dig("emailAddress")) }
-    property :created, from: :sentDateTime, with: ->(sent_date_time) { Time.parse(sent_date_time) }
+    property :sent_at, from: :sentDateTime, with: ->(sent_date_time) { Time.parse(sent_date_time) }
   end
 
   class Profile < Hashie::Trash
@@ -28,7 +28,7 @@ module MsGraphRest
     end
 
     def get(id)
-      Response.new(client.get("/me/messages/#{id}"))
+      Response.new(client.get("/me/messages/#{id}", {}))
     end
   end
 end

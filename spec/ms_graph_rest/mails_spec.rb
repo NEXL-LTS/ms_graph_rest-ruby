@@ -34,8 +34,8 @@ module MsGraphRest
     expect(subject.conversation_id).to eq("conversation_id")
    }
 
-   it("created"){
-    expect(subject.created).not_to be_nil
+   it("sent_at"){
+    expect(subject.sent_at).not_to be_nil
    }
 
    it("sender"){
