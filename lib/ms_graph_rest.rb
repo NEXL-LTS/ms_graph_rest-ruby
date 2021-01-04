@@ -30,6 +30,10 @@ module MsGraphRest
       MultiJson.load(response.body)
     end
 
+    def delete(path)
+      conn.delete(path)
+    end
+
     def users
       require_relative 'ms_graph_rest/users'
       Users.new(client: self)

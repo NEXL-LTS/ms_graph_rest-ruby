@@ -1,5 +1,5 @@
 module MsGraphRest
-  RSpec.describe 'Subscriptions' do
+  RSpec.describe 'Subscriptions', "#create" do
     let(:client) { MsGraphRest.new_client(access_token: "123") }
     let(:body) do
       '{

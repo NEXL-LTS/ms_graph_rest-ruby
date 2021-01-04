@@ -59,5 +59,10 @@ module MsGraphRest
       options = CreateOptions.new(options.to_hash)
       CreateResponse.new(client.post("subscriptions", options))
     end
+
+    def delete(id)
+      client.delete("subscriptions/#{id.to_str}")
+      true
+    end
   end
 end
