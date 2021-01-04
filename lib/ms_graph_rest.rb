@@ -1,5 +1,8 @@
-require 'ms_graph_rest/version'
 require 'hashie'
+require_relative 'ms_graph_rest/version'
+require_relative 'ms_graph_rest/mails'
+require_relative 'ms_graph_rest/users'
+require_relative 'ms_graph_rest/subscriptions'
 
 module MsGraphRest
   class Error < StandardError; end
@@ -35,13 +38,15 @@ module MsGraphRest
     end
 
     def users
-      require_relative 'ms_graph_rest/users'
       Users.new(client: self)
     end
 
     def subscriptions
-      require_relative 'ms_graph_rest/subscriptions'
       Subscriptions.new(client: self)
+    end
+
+    def mails
+      Mails.new(client: self)
     end
   end
 
