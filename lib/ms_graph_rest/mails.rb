@@ -3,10 +3,10 @@ module MsGraphRest
     include Hashie::Extensions::IndifferentAccess
     include Hashie::Extensions::IgnoreUndeclared
     include Hashie::Extensions::Coercion
-    
+
     property :message_id, from: :id
     property :conversation_id, from: :conversationId
-    property :recipients, from: :toRecipients, with: ->(to_recipients) { 
+    property :recipients, from: :toRecipients, with: ->(to_recipients) {
       to_recipients.map { |recipient| Profile.new(recipient.dig("emailAddress")) }.compact
     }
     property :sender, transform_with: ->(value) { Profile.new(value.dig("emailAddress")) }
