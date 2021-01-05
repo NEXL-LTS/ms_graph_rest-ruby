@@ -99,11 +99,27 @@ puts result.id
 puts result.resource
 puts result.application_id
 puts result.change_type
+puts result.client_state
+puts result.notification_url
+puts result.expiration_date_time
+puts result.creator_id
+```
+
+#### Update
+
+```ruby
+result = client.subscriptions.update("7f105c7d-2dc5-4530-97cd-4e7ae6534c07",
+                                     expiration_date_time: "2016-11-20T18:23:45.9356913Z")
+
+puts result.id
+puts result.resource
+puts result.application_id
 puts result.change_type
 puts result.client_state
 puts result.notification_url
 puts result.expiration_date_time
 puts result.creator_id
+puts result.include_resource_data
 ```
 
 #### Delete

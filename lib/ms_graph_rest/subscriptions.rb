@@ -23,32 +23,37 @@ module MsGraphRest
     coerce_key :sign_in_activity, SignInActivity
   end
 
-  class CreateOptions < Hashie::Trash
-    include Hashie::Extensions::IndifferentAccess
-
-    property :changeType, from: :change_type
-    property :notificationUrl, from: :notification_url
-    property :resource
-    property :expirationDateTime, from: :expiration_date_time
-    property :clientState, from: :client_state
-  end
-
-  class CreateResponse < Hashie::Trash
-    include Hashie::Extensions::IndifferentAccess
-    include Hashie::Extensions::IgnoreUndeclared
-
-    property :id
-    property :resource
-    property :application_id, from: :applicationId
-    property :change_type, from: :changeType
-    property :client_state, from: :clientState
-    property :notification_url, from: :notificationUrl
-    property :expiration_date_time, from: :expirationDateTime
-    property :creator_id, from: :creatorId
-    property :odata_context, from: '@odata.context'
-  end
-
   class Subscriptions
+    class SaveOptions < Hashie::Trash
+      include Hashie::Extensions::IndifferentAccess
+
+      property :changeType, from: :change_type
+      property :notificationUrl, from: :notification_url
+      property :resource
+      property :expirationDateTime, from: :expiration_date_time
+      property :clientState, from: :client_state
+    end
+
+    class SaveResponse < Hashie::Trash
+      include Hashie::Extensions::IndifferentAccess
+      include Hashie::Extensions::IgnoreUndeclared
+
+      property :id
+      property :resource
+      property :application_id, from: :applicationId
+      property :change_type, from: :changeType
+      property :client_state, from: :clientState
+      property :notification_url, from: :notificationUrl
+      property :expiration_date_time, from: :expirationDateTime
+      property :creator_id, from: :creatorId
+      property :odata_context, from: '@odata.context'
+      property :lifecycle_notification_url, from: :lifecycleNotificationUrl
+      property :expiration_date_time, from: :expirationDateTime
+      property :encryption_certificate, from: :encryptionCertificate
+      property :encryption_certificate_id, from: :encryptionCertificateId
+      property :include_resource_data, from: :includeResourceData
+    end
+
     attr_reader :client
 
     def initialize(client:)
@@ -56,13 +61,18 @@ module MsGraphRest
     end
 
     def create(options)
-      options = CreateOptions.new(options.to_hash)
-      CreateResponse.new(client.post("subscriptions", options))
+      options = SaveOptions.new(options.to_hash)
+      SaveResponse.new(client.post("subscriptions", options))
     end
 
     def delete(id)
       client.delete("subscriptions/#{id.to_str}")
       true
+    end
+
+    def update(id, options)
+      options = SaveOptions.new(options.to_hash)
+      SaveResponse.new(client.patch("subscriptions/#{id.to_str}", options))
     end
   end
 end

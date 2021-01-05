@@ -33,6 +33,11 @@ module MsGraphRest
       MultiJson.load(response.body)
     end
 
+    def patch(path, body)
+      response = conn.patch(path, body.to_json)
+      MultiJson.load(response.body)
+    end
+
     def delete(path)
       conn.delete(path)
     end
