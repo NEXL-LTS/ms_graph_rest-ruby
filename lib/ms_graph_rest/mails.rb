@@ -27,8 +27,8 @@ module MsGraphRest
       @client = client
     end
 
-    def get(id)
-      Response.new(client.get("/me/messages/#{id}", {}))
+    def get(path)
+      Response.new(client.get(path, {}))
     end
   end
 end
