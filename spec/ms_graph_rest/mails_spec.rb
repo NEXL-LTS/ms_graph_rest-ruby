@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module MsGraphRest
   RSpec.describe 'Mails' do
-    subject { Mails.new(client: client).get('id') }
+    subject { Mails.new(client: client).get('/user/user_id/messages/message_id') }
 
     let(:client) { double }
 
