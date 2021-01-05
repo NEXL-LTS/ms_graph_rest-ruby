@@ -19,7 +19,10 @@ module MsGraphRest
               "mailNickname":"contoso1_gmail.com#EXT#",
               "otherMails":["contoso1@gmail.com"],
               "proxyAddresses":["SMTP:contoso1@gmail.com"],
-              "userPrincipalName":"contoso1_gmail.com#EXT#@microsoft.onmicrosoft.com"
+              "userPrincipalName":"contoso1_gmail.com#EXT#@microsoft.onmicrosoft.com",
+              "givenName":"Carry",
+              "surname":"Ontoso",
+              "mobilePhone":"234"
             }
           ]
         }'
@@ -30,8 +33,8 @@ module MsGraphRest
         expect(result.size).to eq(1)
         expect(result.first)
           .to have_attributes(id: "87d349ed-44d7-43e1-9a83-5f2406dee5bd",
-                              display_name: 'contoso1',
-                              mail: "'contoso1@gmail.com",
+                              display_name: 'contoso1', given_name: "Carry", surname: "Ontoso",
+                              mail: "'contoso1@gmail.com", mobile_phone: "234",
                               mail_nickname: "contoso1_gmail.com#EXT#",
                               other_mails: ["contoso1@gmail.com"],
                               proxy_addresses: ["SMTP:contoso1@gmail.com"],

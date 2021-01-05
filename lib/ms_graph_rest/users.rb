@@ -20,6 +20,9 @@ module MsGraphRest
     property :proxy_addresses, from: :proxyAddresses
     property :user_principal_name, from: :userPrincipalName
     property :sign_in_activity, from: :signInActivity
+    property :given_name, from: :givenName
+    property :surname
+    property :mobile_phone, from: :mobilePhone
 
     coerce_key :sign_in_activity, SignInActivity
   end
