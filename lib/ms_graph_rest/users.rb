@@ -12,6 +12,7 @@ module MsGraphRest
     include Hashie::Extensions::IgnoreUndeclared
     include Hashie::Extensions::Coercion
 
+    property :id
     property :display_name, from: :displayName
     property :mail
     property :mail_nickname, from: :mailNickname

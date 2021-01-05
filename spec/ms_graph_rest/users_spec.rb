@@ -13,6 +13,7 @@ module MsGraphRest
         '{
           "value": [
             {
+              "id": "87d349ed-44d7-43e1-9a83-5f2406dee5bd",
               "displayName":"contoso1",
               "mail":"\'contoso1@gmail.com",
               "mailNickname":"contoso1_gmail.com#EXT#",
@@ -28,7 +29,8 @@ module MsGraphRest
         result = users.get
         expect(result.size).to eq(1)
         expect(result.first)
-          .to have_attributes(display_name: 'contoso1',
+          .to have_attributes(id: "87d349ed-44d7-43e1-9a83-5f2406dee5bd",
+                              display_name: 'contoso1',
                               mail: "'contoso1@gmail.com",
                               mail_nickname: "contoso1_gmail.com#EXT#",
                               other_mails: ["contoso1@gmail.com"],
