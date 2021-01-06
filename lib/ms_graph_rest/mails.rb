@@ -19,6 +19,13 @@ module MsGraphRest
       }
       property :sender, transform_with: ->(value) { Profile.new(value.dig("emailAddress")) }
       property :sent_at, from: :sentDateTime, with: ->(sent_date_time) { Time.parse(sent_date_time) }
+      property :payload
+
+      def self.build(mail)
+        Response.new(mail).tap { |response|
+          response.payload = mail
+        }
+      end
     end
 
     attr_reader :client
@@ -28,7 +35,32 @@ module MsGraphRest
     end
 
     def get(path)
-      Response.new(client.get(path, {}))
+      mail = client.get(path, {})
+      Response.build(mail)
+    end
+
+    def get_all(path, start_time, page_size = 10)
+      query_params = params(start_time)
+      response = client.get(path, query_params)
+      response["value"].each { |mail|  yield Response.build(mail) }
+      next_link = response["@odata.nextLink"]
+
+      while(next_link) 
+        response = client.get(next_link, {})
+        response["value"].each { |mail|  yield Response.build(mail) }
+        next_link = response["@odata.nextLink"]
+      end
+    end
+
+    private
+
+    def params(start_time, page_size)
+      { 
+        "$filter" => "sentDateTime ge #{start_time.iso8601}",
+        "$orderBy" => "sentDateTime asc",
+        "$top" => page_size
+        "$count" => "true"
+      }
     end
   end
 end

@@ -47,5 +47,9 @@ module MsGraphRest
         subject.recipients.map(&:email)
       ).to contain_exactly("phil@nexl.com.au", "grant@nexl.io", "bapu@nexl.io")
     }
+
+    it("payload") {
+      expect(subject.payload).not_to be_nil
+    }
   end
 end
