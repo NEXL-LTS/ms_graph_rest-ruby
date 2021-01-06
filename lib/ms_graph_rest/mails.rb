@@ -40,7 +40,7 @@ module MsGraphRest
     end
 
     def get_all(path, start_time, page_size = 10)
-      query_params = params(start_time)
+      query_params = params(start_time, page_size)
       response = client.get(path, query_params)
       response["value"].each { |mail|  yield Response.build(mail) }
       next_link = response["@odata.nextLink"]
@@ -58,7 +58,7 @@ module MsGraphRest
       { 
         "$filter" => "sentDateTime ge #{start_time.iso8601}",
         "$orderBy" => "sentDateTime asc",
-        "$top" => page_size
+        "$top" => page_size,
         "$count" => "true"
       }
     end
