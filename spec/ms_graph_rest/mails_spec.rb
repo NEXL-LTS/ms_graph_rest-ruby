@@ -20,7 +20,8 @@ module MsGraphRest
                            { "emailAddress" => { "name" => "Bapu Sethi", "address" => "bapu@nexl.io" } }],
         "ccRecipients" => [],
         "bccRecipients" => [],
-        "replyTo" => []
+        "replyTo" => [],
+        "internetMessageId" => "internet_message_id"
       }
     }
 
@@ -50,6 +51,10 @@ module MsGraphRest
 
     it("payload") {
       expect(subject.payload).not_to be_nil
+    }
+
+    it("internet_message_id") {
+      expect(subject.internet_message_id).to eq("internet_message_id")
     }
 
     describe "get_all" do
