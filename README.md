@@ -141,7 +141,7 @@ reference https://docs.microsoft.com/en-us/graph/api/user-list-calendarview?view
     puts event.original_end_time_zone
     puts event.response_status.response
     puts event.response_status.time
-    puts event.ical_uid
+    puts event.i_cal_u_id
     puts event.reminder_minutes_before_start
     puts event.is_reminder_on
   end

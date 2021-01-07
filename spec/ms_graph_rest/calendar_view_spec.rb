@@ -38,7 +38,7 @@ module MsGraphRest
         expect(result.first)
           .to have_attributes(original_start_time_zone: "originalStartTimeZone-value",
                               original_end_time_zone: "originalEndTimeZone-value",
-                              ical_uid: "iCalUId-value",
+                              i_cal_u_id: "iCalUId-value",
                               reminder_minutes_before_start: 99,
                               is_reminder_on: true)
         expect(result.first.response_status)
@@ -133,8 +133,7 @@ module MsGraphRest
       end
 
       it 'returns correct result' do
-        expect(result.size).to eq(1)
-        expect(result.odata).to have_attributes(context: "https://graph.microsoft.com/...")
+        expect(result).to have_attributes(odata_context: "https://graph.microsoft.com/...", size: 1)
       end
 
       it 'returns correct event' do
