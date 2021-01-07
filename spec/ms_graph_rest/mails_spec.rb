@@ -51,5 +51,24 @@ module MsGraphRest
     it("payload") {
       expect(subject.payload).not_to be_nil
     }
+
+    describe "get_all" do
+      let(:paginated_response) { { "@odata.nextLink" => second_page ,"value" => [response] } }
+      let(:next_response) { { "value" => [response] } }
+      let(:client) { double }
+      let(:first_page) { "first_page" }
+      let(:second_page) { "second_page" }
+
+      subject { Mails.new(client: client) }
+      
+      before{
+        allow(client).to receive(:get).with(first_page, anything).and_return(paginated_response)
+        allow(client).to receive(:get).with(second_page, anything).and_return(next_response)
+      }
+
+      it("fetches next link"){
+        expect { |b| subject.get_all(first_page, Date.parse('2021-01-01'), &b) }.to yield_control.exactly(2).times
+      }
+    end
   end
 end
