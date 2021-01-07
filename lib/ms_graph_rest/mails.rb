@@ -20,6 +20,7 @@ module MsGraphRest
       property :sender, transform_with: ->(value) { Profile.new(value.dig("emailAddress")) }
       property :sent_at, from: :sentDateTime, with: ->(sent_date_time) { Time.parse(sent_date_time) }
       property :payload
+      property :internet_message_id, from: :internetMessageId
 
       def self.build(mail)
         Response.new(mail).tap { |response|
