@@ -12,3 +12,6 @@ Style:
 
 Metrics/AbcSize:
   Max: 25
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10

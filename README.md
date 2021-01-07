@@ -128,6 +128,60 @@ puts result.include_resource_data
 client.subscriptions.delete("7f105c7d-2dc5-4530-97cd-4e7ae6534c07")
 ```
 
+### Calendar
+
+#### List calendarView
+
+reference https://docs.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0&tabs=http
+
+```ruby
+  result = client.calendar_view.get(start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00')
+  result.each do |event|
+    puts event.original_start_time_zone
+    puts event.original_end_time_zone
+    puts event.response_status.response
+    puts event.response_status.time
+    puts event.ical_uid
+    puts event.reminder_minutes_before_start
+    puts event.is_reminder_on
+  end
+```
+
+using select
+
+```ruby
+  result = client.calendar_view.select('subject,body,bodyPreview,organizer,attendees,start,end,location')
+                               .get(start_date_time: 1.day.ago, end_date_time: Time.current)
+  puts result.odata.context
+  result.each do |event|
+    puts event.id
+    puts event.odata_etag
+    puts event.subject
+    puts event.body_preview
+    puts event.body.content_type
+    puts event.body.content
+    puts event.start.date_time
+    puts event.start.time_zone
+    puts event.end.date_time
+    puts event.end.time_zone
+    puts event.end.date_time
+    puts event.location.display_name
+    puts event.location.location_type
+    puts event.location.unique_id
+    puts event.location.unique_id_type
+    event.attendees.each do |attendee|
+      puts attendee.type
+      puts attendee.status.response
+      puts attendee.status.time
+      puts attendee.email_address.name
+      puts attendee.email_address.address
+    end
+    puts organizer.email_address.name
+    puts organizer.email_address.address
+  end
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

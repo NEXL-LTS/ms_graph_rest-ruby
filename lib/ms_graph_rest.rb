@@ -3,6 +3,7 @@ require_relative 'ms_graph_rest/version'
 require_relative 'ms_graph_rest/mails'
 require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
+require_relative 'ms_graph_rest/calendar_view'
 
 module MsGraphRest
   class Error < StandardError; end
@@ -52,6 +53,10 @@ module MsGraphRest
 
     def mails
       Mails.new(client: self)
+    end
+
+    def calendar_view(path = '/me/calendar/')
+      CalendarView.new(path, client: self)
     end
   end
 

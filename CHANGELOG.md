@@ -1,4 +1,5 @@
 ## [0.1.0]
+* Calendar View
 * Mail Get
 * Subscriptions Update
 * Subscriptions Delete
