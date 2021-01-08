@@ -101,10 +101,10 @@ module MsGraphRest
 
     def _define_sub_class(name)
       sub_class_name = name.to_s.camelize(:upper)
-      self.class.const_get sub_class_name
+      self.class.const_get(sub_class_name, false)
     rescue NameError
-      self.class.const_set sub_class_name, Class.new(HashAccessor)
-      self.class.const_get sub_class_name
+      self.class.const_set(sub_class_name, Class.new(HashAccessor))
+      self.class.const_get(sub_class_name, false)
     end
   end
 end
