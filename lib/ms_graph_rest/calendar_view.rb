@@ -19,6 +19,10 @@ module MsGraphRest
       def size
         value.size
       end
+
+      def to_h
+        to_hash
+      end
     end
 
     attr_reader :client, :path, :query

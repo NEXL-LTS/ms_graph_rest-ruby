@@ -15,3 +15,6 @@ Metrics/AbcSize:
 
 RSpec/MultipleMemoizedHelpers:
   Max: 10
+
+Metrics/MethodLength:
+  Max: 12
