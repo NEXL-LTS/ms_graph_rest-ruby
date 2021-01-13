@@ -4,8 +4,7 @@ require 'byebug'
 
 require 'simplecov'
 SimpleCov.start
-SimpleCov.minimum_coverage_by_file 90
-SimpleCov.minimum_coverage 95
+SimpleCov.minimum_coverage 99
 
 require 'ms_graph_rest'
 

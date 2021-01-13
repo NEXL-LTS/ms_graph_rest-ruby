@@ -181,6 +181,15 @@ using select
   end
 ```
 
+getting next link query params
+
+```ruby
+  result = client.calendar_view.get(start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00')
+  puts result.odata_next_link # ...?endDateTime=2021-01-12T22%3a39%3a15Z&startDateTime=2020-01-12T22%3a39%3a15Z&%24top=10&%24skip=10
+  puts result.next_get_query # {start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00', skip: 10}
+  next_result = client.calendar_view(**result.next_get_query)
+```
+
 
 ## Development
 

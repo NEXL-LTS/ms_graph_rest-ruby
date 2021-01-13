@@ -44,6 +44,12 @@ module MsGraphRest
         expect(result.first.response_status)
           .to have_attributes(response: "", time: "datetime-value")
       end
+
+      it 'returns nothing for next link' do
+        result = calendar_view.get(start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00')
+        expect(result.odata_next_link).to be_nil
+        expect(result.next_get_query).to be_nil
+      end
     end
 
     describe 'Get user calendar with select' do
@@ -157,6 +163,38 @@ module MsGraphRest
         expect(attendee.status).to have_attributes(response: "none", time: "0001-01-01T00:00:00Z")
         expect(attendee.email_address).to have_attributes(name: "Samantha Booth", address: "samanthab@a830edad905084922E17020313.onmicrosoft.com")
         expect(organizer.email_address).to have_attributes(name: "Samantha Booth", address: "samanthab@a830edad905084922E17020313.onmicrosoft.com")
+      end
+    end
+
+    describe 'Get calendar view with next link' do
+      let(:path) { 'me' }
+      let(:body) do
+        params = "endDateTime=2021-01-12T22%3a39%3a15Z&startDateTime=2020-01-12T22%3a39%3a15Z&%24top=10&%24skip=10"
+        "{
+          \"@odata.nextLink\": \"https://graph.microsoft.com/v1.0/me/calendarView?#{params}\",
+          \"value\": [ ]
+        }"
+      end
+
+      before do
+        params = "endDateTime=2020-01-02T19:00:00-08:00&startDateTime=2020-01-01T19:00:00-08:00"
+        stub_request(:get, "https://graph.microsoft.com/v1.0/me/calendarView?#{params}")
+          .to_return(status: 200, body: body, headers: {})
+        params = "$skip=10&$top=10&endDateTime=2021-01-12T22:39:15Z&startDateTime=2020-01-12T22:39:15Z"
+        stub_request(:get, "https://graph.microsoft.com/v1.0/me/calendarView?#{params}")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        result = calendar_view.get(start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00')
+        expect(result.odata_next_link).to include("skip=10")
+        expect(result.next_get_query).to eq(
+          start_date_time: '2020-01-12T22:39:15Z',
+          end_date_time: '2021-01-12T22:39:15Z',
+          skip: "10",
+          top: "10"
+        )
+        calendar_view.get(**result.next_get_query)
       end
     end
   end
