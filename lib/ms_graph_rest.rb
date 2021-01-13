@@ -5,6 +5,7 @@ require_relative 'ms_graph_rest/error'
 require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/calendar_view'
+require_relative 'ms_graph_rest/messages'
 
 module MsGraphRest
   class Client
@@ -58,6 +59,10 @@ module MsGraphRest
 
     def calendar_view(path = '/me/calendar/')
       CalendarView.new(path, client: self)
+    end
+
+    def messages(path = 'me')
+      Messages.new(path, client: self)
     end
   end
 

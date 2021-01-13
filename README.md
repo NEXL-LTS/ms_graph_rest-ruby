@@ -128,6 +128,38 @@ puts result.include_resource_data
 client.subscriptions.delete("7f105c7d-2dc5-4530-97cd-4e7ae6534c07")
 ```
 
+### Message
+
+#### List messages
+
+reference https://docs.microsoft.com/en-us/graph/api/user-list-messages?view=graph-rest-1.0&tabs=http
+
+```ruby
+  result = client.messages.select([:id, :sender, :subject]).get
+  result.each do |message|
+    puts message.id
+    puts message.subject
+    puts message.sender.email_address.name
+    puts message.sender.email_address.address
+  end
+```
+
+using $filter and $orderBy on another user's box
+
+```ruby
+  result = client.messages("users/person@example.com")
+                 .filter("createdDateTime ge #{1.week.ago.iso8601} and createdDateTime lt #{1.day.ago.iso8601}")
+                 .order_by('createdDateTime asc')
+                 .get
+  result.each do |message|
+    puts message.id
+    puts message.subject
+    puts message.sender.email_address.name
+    puts message.sender.email_address.address
+  end
+```
+
+
 ### Calendar
 
 #### List calendarView
@@ -147,11 +179,12 @@ reference https://docs.microsoft.com/en-us/graph/api/user-list-calendarview?view
   end
 ```
 
-using select
+using select and different user
 
 ```ruby
-  result = client.calendar_view.select('subject,body,bodyPreview,organizer,attendees,start,end,location')
-                               .get(start_date_time: 1.day.ago, end_date_time: Time.current)
+  result = client.calendar_view("users/person@example.com")
+                 .select('subject,body,bodyPreview,organizer,attendees,start,end,location')
+                 .get(start_date_time: 1.day.ago, end_date_time: Time.current)
   puts result.odata.context
   result.each do |event|
     puts event.id
