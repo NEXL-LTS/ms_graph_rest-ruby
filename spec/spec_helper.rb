@@ -1,7 +1,6 @@
 require 'bundler/setup'
 
 require 'byebug'
-
 require 'simplecov'
 SimpleCov.start
 SimpleCov.minimum_coverage_by_file 90

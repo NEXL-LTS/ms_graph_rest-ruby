@@ -1,12 +1,11 @@
 require 'hashie'
 require_relative 'ms_graph_rest/version'
 require_relative 'ms_graph_rest/mails'
+require_relative 'ms_graph_rest/error'
 require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
 
 module MsGraphRest
-  class Error < StandardError; end
-
   class Client
     require 'faraday'
     require 'multi_json'
@@ -26,6 +25,8 @@ module MsGraphRest
     def get(path, params)
       response = conn.get(path, params)
       MultiJson.load(response.body)
+    rescue Faraday::ResourceNotFound => e
+      raise ResourceNotFound.new(e)
     end
 
     def post(path, body)
