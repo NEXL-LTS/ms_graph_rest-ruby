@@ -62,6 +62,10 @@ module MsGraphRest
       Mails.new(client: self)
     end
 
+    def photos
+      Photos.new(client: self)
+    end
+
     def calendar_view(path = '/me/calendar/')
       CalendarView.new(path, client: self)
     end
