@@ -14,17 +14,24 @@ module MsGraphRest
 
       property :message_id, from: :id
       property :conversation_id, from: :conversationId
-      property :recipients, from: :toRecipients, with: ->(to_recipients) {
+      property :to_recipients, from: :toRecipients, with: ->(to_recipients) {
         to_recipients.map { |recipient| Profile.new(recipient.dig("emailAddress")) }.compact
+      }
+      property :cc_recipients, from: :ccRecipients, with: ->(cc_recipients) {
+        cc_recipients.map { |recipient| Profile.new(recipient.dig("emailAddress")) }.compact
       }
       property :sender, transform_with: ->(value) { Profile.new(value.dig("emailAddress")) }
       property :sent_at, from: :sentDateTime, with: ->(sent_date_time) { sent_date_time && Time.parse(sent_date_time) }
       property :payload
+      property :recipients
       property :internet_message_id, from: :internetMessageId
 
       def self.build(mail)
         Response.new(mail).tap { |response|
           response.payload = mail
+
+          # For backward compatibility
+          response.recipients = response.to_recipients + response.cc_recipients
         }
       end
     end

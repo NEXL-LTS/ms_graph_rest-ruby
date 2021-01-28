@@ -47,7 +47,7 @@ module MsGraphRest
             "toRecipients" => [{ "emailAddress" => { "name" => "Philipp Thurner", "address" => "phil@nexl.com.au" } },
                                { "emailAddress" => { "name" => "Grant Petersen-Speelman", "address" => "grant@nexl.io" } },
                                { "emailAddress" => { "name" => "Bapu Sethi", "address" => "bapu@nexl.io" } }],
-            "ccRecipients" => [],
+            "ccRecipients" => [{ "emailAddress" => { "name" => "May", "address" => "may@nexl.io" } }],
             "bccRecipients" => [],
             "replyTo" => [],
             "internetMessageId" => "internet_message_id"
@@ -70,10 +70,22 @@ module MsGraphRest
           expect(subject.sender.email).to eq("konrad@nexl.io")
         }
 
+        it("to_recipients") {
+          expect(
+            subject.to_recipients.map(&:email)
+          ).to contain_exactly("phil@nexl.com.au", "grant@nexl.io", "bapu@nexl.io")
+        }
+
+        it("cc_recipients") {
+          expect(
+            subject.cc_recipients.map(&:email)
+          ).to contain_exactly("may@nexl.io")
+        }
+
         it("recipients") {
           expect(
             subject.recipients.map(&:email)
-          ).to contain_exactly("phil@nexl.com.au", "grant@nexl.io", "bapu@nexl.io")
+          ).to contain_exactly("phil@nexl.com.au", "grant@nexl.io", "bapu@nexl.io", "may@nexl.io")
         }
 
         it("payload") {

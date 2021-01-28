@@ -6,6 +6,7 @@ require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/messages'
+require_relative 'ms_graph_rest/photos'
 
 module MsGraphRest
   class Client
@@ -24,11 +25,15 @@ module MsGraphRest
       end
     end
 
-    def get(path, params)
-      response = conn.get(path, params)
-      MultiJson.load(response.body)
+    def get_raw(path, params)
+      conn.get(path, params)
     rescue Faraday::ResourceNotFound => e
       raise ResourceNotFound.new(e)
+    end
+
+    def get(path, params)
+      response = get_raw(path, params)
+      MultiJson.load(response.body)
     end
 
     def post(path, body)
@@ -55,6 +60,10 @@ module MsGraphRest
 
     def mails
       Mails.new(client: self)
+    end
+
+    def photos
+      Photos.new(client: self)
     end
 
     def calendar_view(path = '/me/calendar/')
