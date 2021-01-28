@@ -18,7 +18,7 @@ module MsGraphRest
         to_recipients.map { |recipient| Profile.new(recipient.dig("emailAddress")) }.compact
       }
       property :sender, transform_with: ->(value) { Profile.new(value.dig("emailAddress")) }
-      property :sent_at, from: :sentDateTime, with: ->(sent_date_time) { Time.parse(sent_date_time) }
+      property :sent_at, from: :sentDateTime, with: ->(sent_date_time) { sent_date_time && Time.parse(sent_date_time) }
       property :payload
       property :internet_message_id, from: :internetMessageId
 

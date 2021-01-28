@@ -6,60 +6,107 @@ module MsGraphRest
 
     let(:client) { double }
 
-    let(:response) {
-      {
-        "id" => "message_id",
-        "sentDateTime" => "2020-09-07T03:12:25Z",
-        "subject" => "Priorities + Roadmap for the Quarter",
-        "conversationId" => "conversation_id",
-        "webLink" => "https://outlook.office365.com/owa/?ItemID=itemId&exvsurl=1&viewmodel=ReadMessageItem",
-        "sender" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
-        "from" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
-        "toRecipients" => [{ "emailAddress" => { "name" => "Philipp Thurner", "address" => "phil@nexl.com.au" } },
-                           { "emailAddress" => { "name" => "Grant Petersen-Speelman", "address" => "grant@nexl.io" } },
-                           { "emailAddress" => { "name" => "Bapu Sethi", "address" => "bapu@nexl.io" } }],
-        "ccRecipients" => [],
-        "bccRecipients" => [],
-        "replyTo" => [],
-        "internetMessageId" => "internet_message_id"
-      }
-    }
+    describe "get" do
+      before { allow(client).to receive(:get).and_return(response) }
 
-    before { allow(client).to receive(:get).and_return(response) }
+      describe 'without sentDateTime' do
+        let(:response) {
+          {
+            "id" => "message_id",
+            "subject" => "Priorities + Roadmap for the Quarter",
+            "sentDateTime" => nil,
+            "conversationId" => "conversation_id",
+            "webLink" => "https://outlook.office365.com/owa/?ItemID=itemId&exvsurl=1&viewmodel=ReadMessageItem",
+            "sender" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "from" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "toRecipients" => [{ "emailAddress" => { "name" => "Philipp Thurner", "address" => "phil@nexl.com.au" } },
+                               { "emailAddress" => { "name" => "Grant Petersen-Speelman", "address" => "grant@nexl.io" } },
+                               { "emailAddress" => { "name" => "Bapu Sethi", "address" => "bapu@nexl.io" } }],
+            "ccRecipients" => [],
+            "bccRecipients" => [],
+            "replyTo" => [],
+            "internetMessageId" => "internet_message_id"
+          }
+        }
 
-    it("message_id") {
-      expect(subject.message_id).to eq("message_id")
-    }
+        it("message_id") {
+          expect(subject.sent_at).to be_nil
+        }
+      end
 
-    it("conversation_id") {
-      expect(subject.conversation_id).to eq("conversation_id")
-    }
+      describe 'with sentDateTime' do
+        let(:response) {
+          {
+            "id" => "message_id",
+            "sentDateTime" => "2020-09-07T03:12:25Z",
+            "subject" => "Priorities + Roadmap for the Quarter",
+            "conversationId" => "conversation_id",
+            "webLink" => "https://outlook.office365.com/owa/?ItemID=itemId&exvsurl=1&viewmodel=ReadMessageItem",
+            "sender" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "from" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "toRecipients" => [{ "emailAddress" => { "name" => "Philipp Thurner", "address" => "phil@nexl.com.au" } },
+                               { "emailAddress" => { "name" => "Grant Petersen-Speelman", "address" => "grant@nexl.io" } },
+                               { "emailAddress" => { "name" => "Bapu Sethi", "address" => "bapu@nexl.io" } }],
+            "ccRecipients" => [],
+            "bccRecipients" => [],
+            "replyTo" => [],
+            "internetMessageId" => "internet_message_id"
+          }
+        }
 
-    it("sent_at") {
-      expect(subject.sent_at).not_to be_nil
-    }
+        it("message_id") {
+          expect(subject.message_id).to eq("message_id")
+        }
 
-    it("sender") {
-      expect(subject.sender.email).to eq("konrad@nexl.io")
-    }
+        it("conversation_id") {
+          expect(subject.conversation_id).to eq("conversation_id")
+        }
 
-    it("recipients") {
-      expect(
-        subject.recipients.map(&:email)
-      ).to contain_exactly("phil@nexl.com.au", "grant@nexl.io", "bapu@nexl.io")
-    }
+        it("sent_at") {
+          expect(subject.sent_at).not_to be_nil
+        }
 
-    it("payload") {
-      expect(subject.payload).not_to be_nil
-    }
+        it("sender") {
+          expect(subject.sender.email).to eq("konrad@nexl.io")
+        }
 
-    it("internet_message_id") {
-      expect(subject.internet_message_id).to eq("internet_message_id")
-    }
+        it("recipients") {
+          expect(
+            subject.recipients.map(&:email)
+          ).to contain_exactly("phil@nexl.com.au", "grant@nexl.io", "bapu@nexl.io")
+        }
+
+        it("payload") {
+          expect(subject.payload).not_to be_nil
+        }
+
+        it("internet_message_id") {
+          expect(subject.internet_message_id).to eq("internet_message_id")
+        }
+      end
+    end
 
     describe "get_all" do
       subject { Mails.new(client: client) }
 
+      let(:response) {
+        {
+          "id" => "message_id",
+          "sentDateTime" => "2020-09-07T03:12:25Z",
+          "subject" => "Priorities + Roadmap for the Quarter",
+          "conversationId" => "conversation_id",
+          "webLink" => "https://outlook.office365.com/owa/?ItemID=itemId&exvsurl=1&viewmodel=ReadMessageItem",
+          "sender" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+          "from" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+          "toRecipients" => [{ "emailAddress" => { "name" => "Philipp Thurner", "address" => "phil@nexl.com.au" } },
+                             { "emailAddress" => { "name" => "Grant Petersen-Speelman", "address" => "grant@nexl.io" } },
+                             { "emailAddress" => { "name" => "Bapu Sethi", "address" => "bapu@nexl.io" } }],
+          "ccRecipients" => [],
+          "bccRecipients" => [],
+          "replyTo" => [],
+          "internetMessageId" => "internet_message_id"
+        }
+      }
       let(:paginated_response) { { "@odata.nextLink" => second_page, "value" => [response] } }
       let(:next_response) { { "value" => [response] } }
       let(:client) { double }
