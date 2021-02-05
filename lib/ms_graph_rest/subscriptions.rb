@@ -48,7 +48,6 @@ module MsGraphRest
       property :creator_id, from: :creatorId
       property :odata_context, from: '@odata.context'
       property :lifecycle_notification_url, from: :lifecycleNotificationUrl
-      property :expiration_date_time, from: :expirationDateTime
       property :encryption_certificate, from: :encryptionCertificate
       property :encryption_certificate_id, from: :encryptionCertificateId
       property :include_resource_data, from: :includeResourceData
@@ -73,6 +72,18 @@ module MsGraphRest
     def update(id, options)
       options = SaveOptions.new(options.to_hash)
       SaveResponse.new(client.patch("subscriptions/#{id.to_str}", options))
+    end
+
+    def get(id)
+      response = client.get("subscriptions/#{id.to_str}")
+      SaveResponse.new(response)
+    rescue Faraday::ResourceNotFound
+      raise MsGraphRest::ResourceNotFound
+    end
+
+    def all
+      subscriptions = client.get("subscriptions")
+      subscriptions.map { |subscription| SaveResponse.new(subscription) }
     end
   end
 end

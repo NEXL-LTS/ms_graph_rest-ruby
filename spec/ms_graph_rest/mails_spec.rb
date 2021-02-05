@@ -98,7 +98,7 @@ module MsGraphRest
       end
     end
 
-    describe "get_all" do
+    describe "all" do
       subject { Mails.new(client: client) }
 
       let(:response) {
@@ -126,12 +126,12 @@ module MsGraphRest
       let(:second_page) { "second_page" }
 
       before {
-        allow(client).to receive(:get).with(first_page, anything).and_return(paginated_response)
+        allow(client).to receive(:get).with("messages", anything).and_return(paginated_response)
         allow(client).to receive(:get).with(second_page, anything).and_return(next_response)
       }
 
       it("fetches next link") {
-        expect { |b| subject.get_all(first_page, Date.parse('2021-01-01'), &b) }.to yield_control.exactly(2).times
+        expect { |b| subject.all(Date.parse('2021-01-01'), &b) }.to yield_control.exactly(2).times
       }
     end
   end

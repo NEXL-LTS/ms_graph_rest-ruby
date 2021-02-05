@@ -55,6 +55,10 @@ module MsGraphRest
                                             '$top' => top }.compact)))
     end
 
+    def create(options)
+      Response.new(client.post("#{path}", options))
+    end
+
     def select(val)
       val = val.map(&:to_s).map { |v| v.camelize(:lower) }.join(',') if val.is_a?(Array)
       new_with_query(query.merge('$select' => val))
