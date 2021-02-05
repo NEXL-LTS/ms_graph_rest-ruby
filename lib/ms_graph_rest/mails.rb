@@ -25,6 +25,7 @@ module MsGraphRest
       property :payload
       property :recipients
       property :internet_message_id, from: :internetMessageId
+      property :web_link, from: :webLink
 
       def self.build(mail)
         Response.new(mail).tap { |response|
@@ -47,9 +48,14 @@ module MsGraphRest
       Response.build(mail)
     end
 
-    def get_all(path, start_time, page_size = 10)
+    def fetch(id)
+      mail = client.get("messages/#{id}", {})
+      Response.build(mail)
+    end
+
+    def all(start_time, page_size = 10)
       query_params = params(start_time, page_size)
-      response = client.get(path, query_params)
+      response = client.get("messages", query_params)
       response["value"].each { |mail| yield Response.build(mail) }
       next_link = response["@odata.nextLink"]
 
