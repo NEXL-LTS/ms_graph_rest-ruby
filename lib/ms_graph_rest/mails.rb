@@ -49,13 +49,13 @@ module MsGraphRest
     end
 
     def fetch(id)
-      mail = client.get("messages/#{id}", {})
+      mail = client.get("me/messages/#{id}", {})
       Response.build(mail)
     end
 
     def all(start_time, page_size = 10)
       query_params = params(start_time, page_size)
-      response = client.get("messages", query_params)
+      response = client.get("me/messages", query_params)
       response["value"].each { |mail| yield Response.build(mail) }
       next_link = response["@odata.nextLink"]
 

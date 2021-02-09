@@ -41,7 +41,7 @@ module MsGraphRest
         "creator_id" => "8ee44408-0679-472c-bc2a-692812af3437",
         "encryption_certificate" => "",
         "encryption_certificate_id" => "",
-        "include_resource_data": false
+        "include_resource_data" => false
       )
     end
   end

@@ -126,7 +126,7 @@ module MsGraphRest
       let(:second_page) { "second_page" }
 
       before {
-        allow(client).to receive(:get).with("messages", anything).and_return(paginated_response)
+        allow(client).to receive(:get).with("me/messages", anything).and_return(paginated_response)
         allow(client).to receive(:get).with(second_page, anything).and_return(next_response)
       }
 
