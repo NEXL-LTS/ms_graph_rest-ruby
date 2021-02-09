@@ -75,15 +75,15 @@ module MsGraphRest
     end
 
     def get(id)
-      response = client.get("subscriptions/#{id.to_str}")
+      response = client.get("subscriptions/#{id.to_str}", {})
       SaveResponse.new(response)
     rescue Faraday::ResourceNotFound
       raise MsGraphRest::ResourceNotFound
     end
 
     def all
-      subscriptions = client.get("subscriptions")
-      subscriptions.map { |subscription| SaveResponse.new(subscription) }
+      subscriptions = client.get("subscriptions", {})
+      subscriptions.fetch("value", []).map { |subscription| SaveResponse.new(subscription) }
     end
   end
 end
