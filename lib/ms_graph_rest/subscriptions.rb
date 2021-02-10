@@ -32,6 +32,7 @@ module MsGraphRest
       property :resource
       property :expirationDateTime, from: :expiration_date_time
       property :clientState, from: :client_state
+      property :lifecycleNotificationUrl, from: :lifecycle_notification_url
     end
 
     class SaveResponse < Hashie::Trash
