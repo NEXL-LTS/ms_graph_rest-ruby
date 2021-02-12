@@ -7,6 +7,7 @@ require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/messages'
 require_relative 'ms_graph_rest/photos'
+require_relative 'ms_graph_rest/groups'
 
 module MsGraphRest
   class Client
@@ -72,6 +73,10 @@ module MsGraphRest
 
     def messages(path = 'me')
       Messages.new(path, client: self)
+    end
+
+    def groups
+      Groups.new(client: self)
     end
   end
 

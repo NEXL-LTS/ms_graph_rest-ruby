@@ -1,4 +1,5 @@
 ## [0.1.0]
+* Groups List
 * Messages List
 * Calendar View
 * Mail Get

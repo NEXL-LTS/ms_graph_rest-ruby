@@ -223,6 +223,47 @@ getting next link query params
   next_result = client.calendar_view(**result.next_get_query)
 ```
 
+### Groups
+
+#### List Groups
+
+reference https://docs.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0&tabs=http
+
+```ruby
+  result = client.groups.get
+  result.each do |group|
+    puts group.id
+    puts group.display_name
+    puts group.description
+    puts group.group_types
+    puts group.visibility
+    puts group.created_date_time
+    puts group.mail
+    puts group.mail_enabled
+    puts event.mail_nickname
+    puts event.security_enabled
+    # etc
+  end
+```
+
+using select and next link query params
+
+```ruby
+  result = client.groups
+                 .select([:id, :display_name, :description, :mail, :mail_enabled])
+                 .get
+
+  result.each do |group|
+    puts group.id
+    puts group.display_name
+    puts group.description
+    puts group.mail
+    puts group.mail_enabled
+  end
+
+  next_result = client.groups(**result.next_get_query)
+```
+
 
 ## Development
 
