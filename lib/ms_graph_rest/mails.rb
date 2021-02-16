@@ -32,7 +32,7 @@ module MsGraphRest
           response.payload = mail
 
           # For backward compatibility
-          response.recipients = response.to_recipients + response.cc_recipients
+          response.recipients = (response.to_recipients || []) + (response.cc_recipients || [])
         }
       end
     end

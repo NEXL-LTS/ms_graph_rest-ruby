@@ -96,6 +96,46 @@ module MsGraphRest
           expect(subject.internet_message_id).to eq("internet_message_id")
         }
       end
+
+      describe 'without toRecipients' do
+        let(:response) {
+          {
+            "id" => "message_id",
+            "subject" => "Priorities + Roadmap for the Quarter",
+            "sentDateTime" => nil,
+            "conversationId" => "conversation_id",
+            "webLink" => "https://outlook.office365.com/owa/?ItemID=itemId&exvsurl=1&viewmodel=ReadMessageItem",
+            "sender" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "from" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "toRecipients" => [{ "emailAddress" => { "name" => "Philipp Thurner", "address" => "phil@nexl.com.au" } }],
+            "bccRecipients" => [],
+            "replyTo" => [],
+            "internetMessageId" => "internet_message_id"
+          }
+        }
+
+        it { expect(subject.recipients).to eq([{ "email" => "phil@nexl.com.au", "name" => "Philipp Thurner" }]) }
+      end
+
+      describe 'without ccRecipients' do
+        let(:response) {
+          {
+            "id" => "message_id",
+            "subject" => "Priorities + Roadmap for the Quarter",
+            "sentDateTime" => nil,
+            "conversationId" => "conversation_id",
+            "webLink" => "https://outlook.office365.com/owa/?ItemID=itemId&exvsurl=1&viewmodel=ReadMessageItem",
+            "sender" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "from" => { "emailAddress" => { "name" => "Konrad Konczak-Islam", "address" => "konrad@nexl.io" } },
+            "ccRecipients" => [],
+            "bccRecipients" => [],
+            "replyTo" => [],
+            "internetMessageId" => "internet_message_id"
+          }
+        }
+
+        it { expect(subject.recipients).to eq([]) }
+      end
     end
 
     describe "all" do
