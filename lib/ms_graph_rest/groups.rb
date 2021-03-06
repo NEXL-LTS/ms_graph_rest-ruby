@@ -19,15 +19,17 @@ module MsGraphRest
 
         uri = URI.parse(odata_next_link)
         params = CGI.parse(uri.query)
-        { select: params["$select"]&.first }.compact
+        { select: params["$select"]&.first,
+          search: params["$search"]&.first,
+          count: params["$count"]&.first,
+          skip: params["$skip"]&.first,
+          filter: params["$filter"]&.first,
+          order_by: params["$orderBy"]&.first,
+          top: params["$top"]&.first }.compact
       end
 
       def size
         value.size
-      end
-
-      def to_h
-        to_hash
       end
     end
     Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "")

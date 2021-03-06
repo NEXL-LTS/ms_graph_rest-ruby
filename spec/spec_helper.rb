@@ -3,7 +3,7 @@ require 'bundler/setup'
 require 'byebug'
 require 'simplecov'
 SimpleCov.start
-SimpleCov.minimum_coverage 99
+SimpleCov.minimum_coverage_by_file 91
 
 require 'ms_graph_rest'
 
