@@ -1,0 +1,1022 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#Collection(microsoft.graph.plannerTask)",
+  "@odata.count": 23,
+  "value": [
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "IlGTfsb-PEWl5EYIx97I5WUAB8ni",
+      "bucketId": "fno1rNw2Vk2x7XwLQib9aWUAC2YS",
+      "title": "Northwind HR Training Video Part I",
+      "orderHint": "8586967557616915534",
+      "assigneePriority": "8586967557616915534",
+      "percentComplete": 50,
+      "startDateTime": "2017-09-08T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:12:03.7860273Z",
+      "dueDateTime": "2018-09-03T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "description",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 1,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "102sl-tTCkyFHptTaFW5lGUACsAe",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:12:03.7860273Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "Ey4oAJeTv0W6kx-kD4T-kGUAHEwE",
+      "bucketId": "XxJ8fhM6gE-2-ShejgmMWGUAEVtB",
+      "title": "Search Optimization",
+      "orderHint": "8586967558658533417",
+      "assigneePriority": "8586967558658533417",
+      "percentComplete": 0,
+      "startDateTime": "2017-09-03T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:10:19.624239Z",
+      "dueDateTime": "2018-08-29T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "7aZeJUYK90OZiFq6H7Ug3mUACcdr",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "08fa38e4-cbfa-4488-94ed-c834da6539df"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:10:19.624239Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "08fa38e4-cbfa-4488-94ed-c834da6539df"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "axfL6rGxbkST4MLr9I3IemUAAF5w",
+      "bucketId": "syoYzpAITkayeTEh_gprzWUAN1D5",
+      "title": "Office move planning",
+      "orderHint": "8586967556748219557",
+      "assigneePriority": "8586967556748219557",
+      "percentComplete": 50,
+      "startDateTime": "2017-08-24T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:13:30.655625Z",
+      "dueDateTime": "2018-08-14T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "9kd5ujJDhkWUPGORUPIJmWUAHTRJ",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:13:30.655625Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "axfL6rGxbkST4MLr9I3IemUAAF5w",
+      "bucketId": "Z0xa7gjn9E-Gi527yOSbBmUAHdZS",
+      "title": "Feature request: Tint Control",
+      "orderHint": "8586967556410286059",
+      "assigneePriority": "8586967556410286059",
+      "percentComplete": 0,
+      "startDateTime": "2017-09-01T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:04.4489748Z",
+      "dueDateTime": "2018-09-03T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "9pP72CGCGU-eaUgDCsG-uGUAInBY",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+        }
+      },
+      "appliedCategories": {
+        "category4": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:04.4489748Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "Ey4oAJeTv0W6kx-kD4T-kGUAHEwE",
+      "bucketId": "KIatUNaJ-U6TKG1i0SbjSmUAAS-3",
+      "title": "Launch Event Advertising",
+      "orderHint": "8586967558432287560",
+      "assigneePriority": "8586967558432287560",
+      "percentComplete": 0,
+      "startDateTime": "2017-09-28T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:10:42.2488247Z",
+      "dueDateTime": "2018-09-03T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "GnvDDPtadUaPwTpCIduXr2UAHYab",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "08fa38e4-cbfa-4488-94ed-c834da6539df"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:10:42.2488247Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "08fa38e4-cbfa-4488-94ed-c834da6539df"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "Ey4oAJeTv0W6kx-kD4T-kGUAHEwE",
+      "bucketId": "zuFS4ul6VUmzNTZtDrKpqGUADr0L",
+      "title": "Visual Branding Elements",
+      "orderHint": "8586967558266633129",
+      "assigneePriority": "8586967558266633129",
+      "percentComplete": 50,
+      "startDateTime": "2017-08-24T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:10:58.8142678Z",
+      "dueDateTime": "2018-08-14T00:00:00Z",
+      "hasDescription": true,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 2,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "Hx1G5K_MWUaSO56kC28aEWUABz3S",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "08fa38e4-cbfa-4488-94ed-c834da6539df"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:10:58.8142678Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "08fa38e4-cbfa-4488-94ed-c834da6539df"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "szrUMcbWS0OPw__ki7x_mmUAGLeW",
+      "bucketId": "cl0qZo3hTkeeLVQGBxwMsWUALN14",
+      "title": "A/V Equipment Rental",
+      "orderHint": "8586967556194420594",
+      "assigneePriority": "8586967556194420594",
+      "percentComplete": 0,
+      "startDateTime": "2017-09-03T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:26.0355213Z",
+      "dueDateTime": "2018-07-19T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "IfchdpfF1EShpD8cB6Ec7WUAIDLo",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:26.0355213Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "axfL6rGxbkST4MLr9I3IemUAAF5w",
+      "bucketId": "FPZRzzpIikSD1e85RGUMuWUADllL",
+      "title": "Vendor access to data",
+      "orderHint": "8586967556546609365",
+      "assigneePriority": "8586967556546609365",
+      "percentComplete": 50,
+      "startDateTime": "2017-08-09T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:13:50.8166442Z",
+      "dueDateTime": "2018-07-20T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "TZDuBOsw_0ua3LWsap1JJWUAJQx9",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:13:50.8166442Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "IlGTfsb-PEWl5EYIx97I5WUAB8ni",
+      "bucketId": "4gSdlZ3RQEKqCYeqjqC5N2UANK7c",
+      "title": "PK-388 Product Demonstration",
+      "orderHint": "8586967557969683563",
+      "assigneePriority": "8586967557969683563",
+      "percentComplete": 0,
+      "startDateTime": "2017-09-01T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:11:28.5092244Z",
+      "dueDateTime": "2018-07-15T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "UrDmTq_JsEyJI7OZB0fWbWUAFjNG",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:11:28.5092244Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "KnKNsuGpfEqYMvkE7bwMumUADrfY",
+      "bucketId": "B388N4leKU-9pLstFwhehmUAMWgb",
+      "title": "Draft presentation",
+      "orderHint": "8586967555450699891",
+      "assigneePriority": "8586967555450699891",
+      "percentComplete": 50,
+      "startDateTime": "2017-09-02T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:15:40.4075916Z",
+      "dueDateTime": "2017-10-14T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "b5jS2j9ysE-nyQz1K1J9CWUAFcjC",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+        }
+      },
+      "appliedCategories": {
+        "category1": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:15:40.4075916Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "yi0ih03FqUSEdYa7CGe8ZmUAFiam",
+      "bucketId": "mpcmEHelPkqnT4fe4-9W6mUAMBVx",
+      "title": "Work station for Henrietta Mueller",
+      "orderHint": "8586967555099912591",
+      "assigneePriority": "8586967555099912591",
+      "percentComplete": 50,
+      "startDateTime": "2017-08-24T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:16:15.4863216Z",
+      "dueDateTime": "2017-08-30T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "hMo3A4nRKEKAeut1fmgJU2UAB7oV",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+        }
+      },
+      "appliedCategories": {
+        "category5": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:16:15.4863216Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "axfL6rGxbkST4MLr9I3IemUAAF5w",
+      "bucketId": "Z0xa7gjn9E-Gi527yOSbBmUAHdZS",
+      "title": "IT Training Plan",
+      "orderHint": "8586967556379165135",
+      "assigneePriority": "8586967556379165135",
+      "percentComplete": 50,
+      "startDateTime": "2017-09-01T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:07.5610672Z",
+      "dueDateTime": "2018-09-03T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 1,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "io-5n_27e0ylXOJqRNs3ImUAEkU2",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:07.5610672Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "IlGTfsb-PEWl5EYIx97I5WUAB8ni",
+      "bucketId": "4gSdlZ3RQEKqCYeqjqC5N2UANK7c",
+      "title": "Engineering QA Video - Q4",
+      "orderHint": "8586967557951567383",
+      "assigneePriority": "8586967557951567383",
+      "percentComplete": 0,
+      "startDateTime": "2017-09-01T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:11:30.3208424Z",
+      "dueDateTime": "2018-07-26T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "ndPattIcgEmxYLUyVGM_dWUAD7pz",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:11:30.3208424Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "szrUMcbWS0OPw__ki7x_mmUAGLeW",
+      "bucketId": "WMYJ7b_UVk6GTYz237iGSGUACeEx",
+      "title": "Furniture Rental for Launch Event",
+      "orderHint": "8586967556092844350",
+      "assigneePriority": "8586967556092844350",
+      "percentComplete": 50,
+      "startDateTime": "2017-08-24T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:36.1931457Z",
+      "dueDateTime": "2018-07-15T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": null,
+      "completedBy": null,
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "oIx3zN98jEmVOM-4mUJzSGUANeje",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:36.1931457Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "KnKNsuGpfEqYMvkE7bwMumUADrfY",
+      "bucketId": "_x2gLpkq1E6avVkOltbjT2UAIhUm",
+      "title": "Create pitch deck",
+      "orderHint": "8586967555616282847",
+      "assigneePriority": "8586967555616282847",
+      "percentComplete": 100,
+      "startDateTime": "2017-08-19T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:15:23.849296Z",
+      "dueDateTime": "2017-09-04T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:15:23.849296Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "eyYBvjT_SkCONDMADBqRwmUABZCy",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:15:23.849296Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "KnKNsuGpfEqYMvkE7bwMumUADrfY",
+      "bucketId": "_x2gLpkq1E6avVkOltbjT2UAIhUm",
+      "title": "Editorial review",
+      "orderHint": "8586967555628545312",
+      "assigneePriority": "8586967555628545312",
+      "percentComplete": 100,
+      "startDateTime": "2017-08-24T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:15:22.6230495Z",
+      "dueDateTime": "2017-08-30T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:15:22.6230495Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "LGsG2WC9HEO_-2BcetdoL2UAH2A_",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+        }
+      },
+      "appliedCategories": {
+        "category2": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:15:22.6230495Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "szrUMcbWS0OPw__ki7x_mmUAGLeW",
+      "bucketId": "WMYJ7b_UVk6GTYz237iGSGUACeEx",
+      "title": "Invite list for product launch event",
+      "orderHint": "8586967556103214440",
+      "assigneePriority": "8586967556103214440",
+      "percentComplete": 100,
+      "startDateTime": "2017-07-15T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:35.1561367Z",
+      "dueDateTime": "2018-07-25T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:14:35.1561367Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "KqWbLk4PS0idx2Nkq9rhMGUAA77w",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {
+        "category2": true,
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:35.1561367Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "szrUMcbWS0OPw__ki7x_mmUAGLeW",
+      "bucketId": "WMYJ7b_UVk6GTYz237iGSGUACeEx",
+      "title": "Choose Venue for Keynote",
+      "orderHint": "8586967556129656285",
+      "assigneePriority": "8586967556129656285",
+      "percentComplete": 100,
+      "startDateTime": "2017-07-20T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:32.5119522Z",
+      "dueDateTime": "2018-08-04T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:14:32.5119522Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "upoZ5TwCok-AofiKoksa92UAN7AX",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:32.5119522Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "szrUMcbWS0OPw__ki7x_mmUAGLeW",
+      "bucketId": "WMYJ7b_UVk6GTYz237iGSGUACeEx",
+      "title": "Finalize agenda for keynote",
+      "orderHint": "8586967556146508061",
+      "assigneePriority": "8586967556146508061",
+      "percentComplete": 100,
+      "startDateTime": "2017-07-25T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:30.8267746Z",
+      "dueDateTime": "2018-07-30T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:14:30.8267746Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "wgwDmLIpzEilxKhcpsVO6WUAP0ik",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {
+        "category1": true,
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:30.8267746Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "szrUMcbWS0OPw__ki7x_mmUAGLeW",
+      "bucketId": "WMYJ7b_UVk6GTYz237iGSGUACeEx",
+      "title": "Venue Selection",
+      "orderHint": "8586967556156527696",
+      "assigneePriority": "8586967556156527696",
+      "percentComplete": 100,
+      "startDateTime": "2017-08-04T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:14:29.8248111Z",
+      "dueDateTime": "2018-07-15T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:14:29.8248111Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "KT3mLqPzU0qzzkEB7NObS2UAB-xk",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {
+        "category3": true
+      },
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:14:29.8248111Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAaCc=\"",
+      "planId": "axfL6rGxbkST4MLr9I3IemUAAF5w",
+      "bucketId": "FPZRzzpIikSD1e85RGUMuWUADllL",
+      "title": "Update monitors for RD Dept.",
+      "orderHint": "8586967556629362814",
+      "assigneePriority": "8586967556629362814",
+      "percentComplete": 100,
+      "startDateTime": "2017-08-19T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:13:42.5412993Z",
+      "dueDateTime": "2018-07-30T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:13:42.5412993Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "KRTeg2nx7Uq4n6uW9oAytGUALIzd",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:13:42.5412993Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "c03e6eaa-b6ab-46d7-905b-73ec7ea1f755"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "IlGTfsb-PEWl5EYIx97I5WUAB8ni",
+      "bucketId": "fno1rNw2Vk2x7XwLQib9aWUAC2YS",
+      "title": "Northwind Superbowl Ad",
+      "orderHint": "8586967557531971950",
+      "assigneePriority": "8586967557531971950",
+      "percentComplete": 100,
+      "startDateTime": "2017-09-08T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:12:12.2803857Z",
+      "dueDateTime": "2018-09-03T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:12:12.2803857Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "xXUN0BIulkSm9KfU9kTl8mUAFhfO",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:12:12.2803857Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@odata.etag": "W/\"JzEtVGFzayAgQEBAQEBAQEBAQEBAQEBAZCc=\"",
+      "planId": "IlGTfsb-PEWl5EYIx97I5WUAB8ni",
+      "bucketId": "fno1rNw2Vk2x7XwLQib9aWUAC2YS",
+      "title": "Engineering QA Video - Q3",
+      "orderHint": "8586967557547170030",
+      "assigneePriority": "8586967557547170030",
+      "percentComplete": 100,
+      "startDateTime": "2017-09-08T00:00:00Z",
+      "createdDateTime": "2017-09-08T06:12:10.7605777Z",
+      "dueDateTime": "2018-09-03T00:00:00Z",
+      "hasDescription": false,
+      "previewType": "automatic",
+      "completedDateTime": "2017-09-08T06:12:10.7605777Z",
+      "referenceCount": 0,
+      "checklistItemCount": 0,
+      "activeChecklistItemCount": 0,
+      "conversationThreadId": null,
+      "id": "-b4ULH-doEuXT7-8NB9_fGUAD4LA",
+      "createdBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "completedBy": {
+        "user": {
+          "displayName": null,
+          "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        }
+      },
+      "appliedCategories": {},
+      "assignments": {
+        "48d31887-5fad-4d73-a9f5-3c356e68a038": {
+          "@odata.type": "#microsoft.graph.plannerAssignment",
+          "assignedDateTime": "2017-09-08T06:12:10.7605777Z",
+          "orderHint": "",
+          "assignedBy": {
+            "user": {
+              "displayName": null,
+              "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

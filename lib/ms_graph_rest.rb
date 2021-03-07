@@ -8,6 +8,7 @@ require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/messages'
 require_relative 'ms_graph_rest/photos'
 require_relative 'ms_graph_rest/groups'
+require_relative 'ms_graph_rest/planner_tasks'
 
 module MsGraphRest
   class Client
@@ -77,6 +78,10 @@ module MsGraphRest
 
     def groups
       Groups.new(client: self)
+    end
+
+    def planner_tasks(path = 'me/planner/tasks')
+      PlannerTasks.new(path, client: self)
     end
   end
 
