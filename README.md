@@ -264,9 +264,9 @@ using select and next link query params
   next_result = client.groups(**result.next_get_query)
 ```
 
-### Groups
+### Planner Tasks
 
-#### List Groups
+#### List Planner Tasks
 
 reference https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0&tabs=http
 
