@@ -7,29 +7,27 @@ module MsGraphRest
     let(:graph_url) { 'https://graph.microsoft.com/v1.0/' }
 
     describe 'Get planner tasks' do
-      let(:path) { 'me/planner/tasks' }
-      let(:body) { File.read("#{__dir__}/../fixtures/planner_tasks_default.json") }
+      let(:path) { 'me' }
+      let(:body) { File.read("#{__dir__}/planner_tasks_default.json") }
       let(:result) do
         planner_tasks.get
       end
 
       before do
         params = ""
-        stub_request(:get, "#{graph_url}#{path}?#{params}")
+        stub_request(:get, "#{graph_url}#{path}/planner/tasks?#{params}")
           .to_return(status: 200, body: body, headers: {})
       end
 
       it { expect(result.size).to eq(23) }
       it { expect(result.first).to have_attributes(id: "102sl-tTCkyFHptTaFW5lGUACsAe", title: "Northwind HR Training Video Part I") }
       it { expect(result.next_get_query).to be_nil }
-
     end
 
     describe 'Get planner tasks with select' do
-
-      let(:path) { 'me/planner/tasks' }
+      let(:path) { 'drive/root/createdByUser' }
       let(:result) do
-        client.planner_tasks.select([:id, :title, :dueDateTime]).get
+        planner_tasks.select([:id, :title, :dueDateTime]).get
       end
       let(:task) { result.first }
       let(:body) do
@@ -55,18 +53,18 @@ module MsGraphRest
 
       before do
         select_param = 'id,title,dueDateTime'
-        stub_request(:get, "#{graph_url}#{path}?$select=#{select_param}")
+        stub_request(:get, "#{graph_url}#{path}/planner/tasks?$select=#{select_param}")
           .to_return(status: 200, body: body, headers: {})
       end
 
       it 'returns correct result' do
-        expect(result).to have_attributes(odata_context: "https://graph.microsoft.com/v1.0/$metadata#Collection(microsoft.graph.plannerTask)", size: 2)
+        expect(result).to have_attributes(odata_context: "https://graph.microsoft.com/v1.0/$metadata#Collection(microsoft.graph.plannerTask)",
+                                          size: 2)
       end
 
       it 'return correct first tasks' do
         expect(task).to have_attributes(id: '102sl-tTCkyFHptTaFW5lGUACsAe')
       end
     end
-
   end
 end

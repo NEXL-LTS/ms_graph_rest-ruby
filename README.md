@@ -264,6 +264,34 @@ using select and next link query params
   next_result = client.groups(**result.next_get_query)
 ```
 
+### Groups
+
+#### List Groups
+
+reference https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0&tabs=http
+
+```ruby
+client.planner_tasks('me').get
+client.planner_tasks('users/id-here').get
+client.planner_tasks('drive/root/createdByUser').get
+client.planner_tasks.get # default's to me
+```
+
+```ruby
+  result = client.planner_tasks.get
+  result.each do |task|
+    puts task.id
+    puts task.created_by.user.id
+    puts task.plan_id
+    puts task.bucket_id
+    puts task.title
+    puts task.order_hint
+    puts task.assignee_priority
+    puts task.created_date_time
+    # etc
+  end
+```
+
 
 ## Development
 

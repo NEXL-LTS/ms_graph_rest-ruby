@@ -38,10 +38,11 @@ module MsGraphRest
       @client = client
       @query = query
       @path = path
+      @path[0] = '' if @path.start_with?('/')
     end
 
     def get(select: nil)
-      Response.new(client.get(path, query.merge({'$select' => select}.compact)))
+      Response.new(client.get("#{path}/planner/tasks", query.merge({ '$select' => select }.compact)))
     end
 
     def fetch(id)
