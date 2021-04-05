@@ -33,6 +33,7 @@ module MsGraphRest
       let(:body) do
         '{
           "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#Collection(microsoft.graph.plannerTask)",
+          "@odata.nextLink": "https://graph.microsoft.com/v1.0/planner/tasks?$skip=10",
           "@odata.count": 2,
           "value": [
               {
@@ -65,6 +66,8 @@ module MsGraphRest
       it 'return correct first tasks' do
         expect(task).to have_attributes(id: '102sl-tTCkyFHptTaFW5lGUACsAe')
       end
+
+      it { expect(result.next_get_query).to eq(:skip => "10") }
     end
   end
 end

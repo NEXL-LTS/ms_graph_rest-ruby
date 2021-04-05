@@ -19,7 +19,8 @@ module MsGraphRest
 
         uri = URI.parse(odata_next_link)
         params = CGI.parse(uri.query)
-        { select: params["$select"]&.first }.compact
+        { select: params["$select"]&.first,
+          skip: params["$skip"]&.first }.compact
       end
 
       def size

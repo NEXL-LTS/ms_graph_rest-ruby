@@ -292,6 +292,14 @@ client.planner_tasks.get # default's to me
   end
 ```
 
+## In Tests
+
+You can make the http requests read from file instead of make actual http requests.
+
+```ruby
+MsGraphRest.use_fake = true
+MsGraphRest.fake_folder = "#{__dir__}/fake_client"
+```
 
 ## Development
 
