@@ -52,7 +52,7 @@ RSpec.describe MsGraphRest do
     it 'works with missing file' do
       expect do
         connection.patch('missing', { 'body' => 'test' })
-      end.to raise_error(Faraday::ResourceNotFound) do |error|
+      end.to raise_error(Faraday::ClientError) do |error|
         expect(error.response[:body].to_s).to include("No such file or directory")
       end
     end
