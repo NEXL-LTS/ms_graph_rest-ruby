@@ -39,6 +39,7 @@ module MsGraphRest
                               other_mails: ["contoso1@gmail.com"],
                               proxy_addresses: ["SMTP:contoso1@gmail.com"],
                               user_principal_name: "contoso1_gmail.com#EXT\#@microsoft.onmicrosoft.com")
+        expect(result.next_get_query).to be_nil
       end
     end
 
