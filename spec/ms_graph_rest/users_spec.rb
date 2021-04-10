@@ -105,7 +105,7 @@ module MsGraphRest
         results = users
                   .select("displayName,userPrincipalName,signInActivity")
                   .get
-        expect(results.odata.context)
+        expect(results.odata_context)
           .to eq("https://graph.microsoft.com/v1.0/$metadata#users(displayName,userPrincipalName,signInActivity)")
         expect(results.size).to eq(2)
         expect(results.first).to have_attributes(display_name: 'Adele Vance',
@@ -189,6 +189,38 @@ module MsGraphRest
                                          user_principal_name: 'AdeleV@contoso.com')
         expect(first.sign_in_activity).to have_attributes(last_sign_in_date_time: '2019-05-04T15:35:02Z',
                                                           last_sign_in_request_id: 'c7df2760-2c81-4ef7-b578-5b5392b571df')
+      end
+    end
+
+    describe 'with skip token' do
+      before do
+        stub_request(:get, "https://graph.microsoft.com/v1.0/users?$select=id%2cdisplayName")
+          .to_return(status: 200, body: body, headers: {})
+        stub_request(:get, "https://graph.microsoft.com/v1.0/users?$select=id,displayName&$skiptoken=X'40'")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      let(:body) do
+        '{
+          "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users(id,displayName)",
+          "@odata.nextLink": "https://graph.microsoft.com/v1.0/users?$select=id%2cdisplayName&$skiptoken=X%2740%27",
+          "value": [
+            {
+              "displayName": "Adele Vance",
+              "userPrincipalName": "AdeleV@contoso.com",
+              "signInActivity": {
+                "lastSignInDateTime": "2019-05-04T15:35:02Z",
+                "lastSignInRequestId": "c7df2760-2c81-4ef7-b578-5b5392b571df"
+              }
+            }
+          ]
+        }'
+      end
+
+      it do
+        results = users.select([:id, :display_name]).get
+        expect(results.next_get_query).to eq(select: 'id,displayName', skiptoken: "X'40'")
+        users.get(**results.next_get_query)
       end
     end
   end

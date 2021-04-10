@@ -1,44 +1,27 @@
+require 'camel_snake_struct'
+
 module MsGraphRest
-  class User < Hashie::Trash
-    class SignInActivity < Hashie::Trash
-      include Hashie::Extensions::IndifferentAccess
-      include Hashie::Extensions::IgnoreUndeclared
-
-      property :last_sign_in_date_time, from: :lastSignInDateTime
-      property :last_sign_in_request_id, from: :lastSignInRequestId
-    end
-
-    include Hashie::Extensions::IndifferentAccess
-    include Hashie::Extensions::IgnoreUndeclared
-    include Hashie::Extensions::Coercion
-
-    property :id
-    property :display_name, from: :displayName
-    property :mail
-    property :mail_nickname, from: :mailNickname
-    property :other_mails, from: :otherMails
-    property :proxy_addresses, from: :proxyAddresses
-    property :user_principal_name, from: :userPrincipalName
-    property :sign_in_activity, from: :signInActivity
-    property :given_name, from: :givenName
-    property :surname
-    property :mobile_phone, from: :mobilePhone
-
-    coerce_key :sign_in_activity, SignInActivity
-  end
-
   class Users
-    class Response
+    class Response < CamelSnakeStruct
       include Enumerable
 
       def initialize(data)
         @data = data
+        super(data)
       end
 
       def each
-        value.each do |val|
-          yield(User.new(val))
-        end
+        value.each { |val| yield(val) }
+      end
+
+      def next_get_query
+        return nil unless odata_next_link
+
+        uri = URI.parse(odata_next_link)
+        params = CGI.parse(uri.query)
+        { select: params["$select"]&.first,
+          skiptoken: params["$skiptoken"]&.first,
+          filter: params["$filter"]&.first }.compact
       end
 
       def size
@@ -47,22 +30,6 @@ module MsGraphRest
 
       def [](key)
         @data[key]
-      end
-
-      def odata
-        start_txt = '@odata.'
-        @data.each_with_object(OpenStruct.new) do |pair, data|
-          key, val = pair
-          if key.start_with?(start_txt)
-            data[key.gsub(start_txt, '')] = val
-          end
-        end.freeze
-      end
-
-      private
-
-      def value
-        @data.fetch('value')
       end
     end
 
@@ -74,8 +41,10 @@ module MsGraphRest
       @query = query
     end
 
-    def get
-      Response.new(client.get("users", query))
+    def get(select: nil, filter: nil, skiptoken: nil)
+      Response.new(client.get("users", query.merge({ '$select' => select,
+                                                     '$filter' => filter,
+                                                     '$skiptoken' => skiptoken }.compact)))
     end
 
     def filter(val)
@@ -83,6 +52,7 @@ module MsGraphRest
     end
 
     def select(val)
+      val = val.map(&:to_s).map { |v| v.camelize(:lower) }.join(',') if val.is_a?(Array)
       new_with_query(query.merge('$select' => val))
     end
 
