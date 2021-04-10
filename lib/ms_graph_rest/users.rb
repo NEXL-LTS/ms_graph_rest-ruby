@@ -32,6 +32,7 @@ module MsGraphRest
         @data[key]
       end
     end
+    Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "")
 
     attr_reader :client
     attr_reader :query
