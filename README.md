@@ -48,11 +48,19 @@ result = client.users.filter("identities/any(c:c/issuerAssignedId eq 'j.smith@ya
 result.each do |user|
   puts user.display_name
 end
+# Get Next Page
+if result.get_next_query
+  next_result = client.users(**result.get_next_query)
+  next_result.each do |user|
+    puts user.display_name
+  end
+end
+
 
 # Get users including their last sign-in time
 result = client.users.select("displayName,userPrincipalName,signInActivity")
                      .get
-puts result.odata.context
+puts result.odata_context
 result.each do |user|
   puts user.display_name
   puts user.user_principal_name
