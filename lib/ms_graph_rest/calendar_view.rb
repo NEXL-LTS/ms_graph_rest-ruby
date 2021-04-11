@@ -22,7 +22,8 @@ module MsGraphRest
         { start_date_time: params["startDateTime"]&.first,
           end_date_time: params["endDateTime"]&.first,
           skip: params["$skip"]&.first,
-          top: params["$top"]&.first }
+          top: params["$top"]&.first,
+          select: params["$select"]&.first }.compact
       end
 
       def size
@@ -44,7 +45,7 @@ module MsGraphRest
       @query = query
     end
 
-    def get(start_date_time:, end_date_time:, skip: nil, top: nil)
+    def get(start_date_time:, end_date_time:, skip: nil, top: nil, select: nil)
       start_date_time = start_date_time.iso8601 if start_date_time.respond_to?(:iso8601)
       end_date_time = end_date_time.iso8601 if end_date_time.respond_to?(:iso8601)
 
@@ -52,7 +53,8 @@ module MsGraphRest
                               query.merge({ 'startDateTime' => start_date_time,
                                             'endDateTime' => end_date_time,
                                             '$skip' => skip,
-                                            '$top' => top }.compact)))
+                                            '$top' => top,
+                                            '$select' => select }.compact)))
     end
 
     def create(options)
