@@ -147,7 +147,7 @@ module MsGraphRest
         <<~JSON
           {
             "@odata.context":"https://graph.microsoft.com/v1.0/$metadata#groups",
-            "@odata.nextLink":"https://graph.microsoft.com/v1.0/groups?$count=true&$search=%22displayName:Video%22&$skip=10",
+            "@odata.nextLink":"https://graph.microsoft.com/v1.0/groups?$count=true&$search=%22displayName:Video%22&$skip=10&$skiptoken=X'40'",
             "@odata.count":1396,
             "value":[
               {
@@ -165,10 +165,18 @@ module MsGraphRest
                        .get(count: true)
         expect(result.odata_context).to eq("https://graph.microsoft.com/v1.0/$metadata#groups")
         expect(result.odata_count).to eq(1396)
-        expect(result.odata_next_link).to eq("https://graph.microsoft.com/v1.0/groups?$count=true&$search=%22displayName:Video%22&$skip=10")
-        expect(result.next_get_query).to eq(search: '"displayName:Video"', count: "true", skip: "10")
         expect(result.first)
           .to have_attributes(mail: "SFAVideos@service.contoso.com", mail_nickname: "SFAVideos", display_name: "SFA Videos")
+      end
+
+      it 'works with next query' do
+        result = groups.search("\"displayName:Video\"")
+                       .get(count: true)
+        expect(result.next_get_query).to eq(search: '"displayName:Video"', count: "true", skip: "10", skiptoken: "X'40'")
+        # can call next query
+        stub_request(:get, "https://graph.microsoft.com/v1.0/groups?$count=true&$search=%22displayName:Video%22&$skip=10&$skiptoken=X'40'")
+          .to_return(status: 200, body: "{}", headers: {})
+        groups.get(**result.next_get_query)
       end
     end
   end

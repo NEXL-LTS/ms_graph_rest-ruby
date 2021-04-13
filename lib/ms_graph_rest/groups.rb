@@ -19,17 +19,20 @@ module MsGraphRest
 
         uri = URI.parse(odata_next_link)
         params = CGI.parse(uri.query)
-        { select: params["$select"]&.first,
-          search: params["$search"]&.first,
-          count: params["$count"]&.first,
-          skip: params["$skip"]&.first,
-          filter: params["$filter"]&.first,
-          order_by: params["$orderBy"]&.first,
-          top: params["$top"]&.first }.compact
+        _extract_query_params(params)
       end
 
       def size
         value.size
+      end
+
+      private
+
+      def _extract_query_params(params)
+        { select: params["$select"]&.first, search: params["$search"]&.first,
+          count: params["$count"]&.first, skip: params["$skip"]&.first,
+          filter: params["$filter"]&.first, order_by: params["$orderBy"]&.first,
+          top: params["$top"]&.first, skiptoken: params["$skiptoken"]&.first }.compact
       end
     end
     Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "")
@@ -41,14 +44,15 @@ module MsGraphRest
       @query = query
     end
 
-    def get(select: nil, filter: nil, count: nil, top: nil, skip: nil, order_by: nil, search: nil)
+    def get(select: nil, filter: nil, count: nil, top: nil, skip: nil, order_by: nil, search: nil, skiptoken: nil)
       Response.new(client.get("groups", query.merge({ '$skip' => skip,
                                                       '$search' => search,
                                                       '$select' => select,
                                                       '$filter' => filter,
                                                       '$top' => top,
                                                       '$orderBy' => order_by,
-                                                      '$count' => count }.compact)))
+                                                      '$count' => count,
+                                                      '$skiptoken' => skiptoken }.compact)))
     end
 
     def select(val)
