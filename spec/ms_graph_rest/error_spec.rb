@@ -8,13 +8,44 @@ module MsGraphRest
       expect(described_class.new(error_message).message).to eq(error_message)
     end
 
-    describe 'BadRequestErrorCreator' do
-      let(:faraday_bad_request_error) {
-        Faraday::BadRequestError.new StandardError.new, { body: { "error" => { "code" => "AuthenticationError" } }.to_json }
-      }
+    describe "#wrap_request_error" do
+      let(:faraday_error) { faraday_error_class.new StandardError.new, { body: body.to_json } }
 
-      it "can be created" do
-        expect(BadRequestErrorCreator.error(faraday_bad_request_error)).to be_kind_of(AuthenticationError)
+      describe 'BadRequestError' do
+        let(:body) { { "error" => { "code" => "AuthenticationError" } } }
+        let(:faraday_error_class) { Faraday::BadRequestError }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(AuthenticationError) }
+      end
+
+      describe 'ResourceNotFound' do
+        let(:body) { { "error" => { "code" => "AuthenticationError" } } }
+        let(:faraday_error_class) { Faraday::ResourceNotFound }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceNotFound) }
+      end
+
+      describe 'UnauthorizedError' do
+        let(:body) { { "error" => { "code" => "AuthenticationError" } } }
+        let(:faraday_error_class) { Faraday::UnauthorizedError }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
+      end
+
+      describe 'ServerError' do
+        let(:faraday_error_class) { Faraday::ServerError }
+
+        context 'when Unable to resolve User Id' do
+          let(:body) { { "error" => { "code" => "InternalServerError", "message" => "Unable to resolve User Id" } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(UnableToResolveUserId) }
+        end
+
+        context 'when not Unable to resolve User Id' do
+          let(:body) { { "error" => { "code" => "InternalServerError" } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
+        end
       end
     end
   end
