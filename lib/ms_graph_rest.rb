@@ -98,6 +98,8 @@ module MsGraphRest
       conn.get(path, params)
     rescue Faraday::ResourceNotFound => e
       raise ResourceNotFound.new(e)
+    rescue Faraday::BadRequestError => e
+      raise BadRequestErrorCreator.error(e)
     end
 
     def get(path, params)
