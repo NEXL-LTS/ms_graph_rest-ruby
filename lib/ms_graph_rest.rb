@@ -13,6 +13,7 @@ require_relative 'ms_graph_rest/photos'
 require_relative 'ms_graph_rest/groups'
 require_relative 'ms_graph_rest/planner_tasks'
 require_relative 'ms_graph_rest/todo_lists'
+require_relative 'ms_graph_rest/todo_list_tasks'
 
 class Faraday::FileReadAdapter < Faraday::Adapter
   def self.folder=(val)
@@ -165,6 +166,11 @@ module MsGraphRest
     def todo_lists
       TodoLists.new(client: connection)
     end
+
+    def todo_list_tasks(todo_list_id)
+      TodoListTasks.new(todo_list_id, client: connection)
+    end
+
   end
 
   def self.new_client(access_token:)
