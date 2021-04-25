@@ -47,6 +47,13 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
         end
       end
+
+      describe 'Faraday::TimeoutError' do
+        let(:faraday_error) { faraday_error_class.new StandardError.new, nil }
+        let(:faraday_error_class) { Faraday::TimeoutError }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
+      end
     end
   end
 end

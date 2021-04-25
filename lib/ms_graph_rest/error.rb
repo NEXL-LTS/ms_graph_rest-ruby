@@ -36,6 +36,8 @@ module MsGraphRest
 
   class ServerErrorCreator
     def self.error(faraday_error)
+      return faraday_error if faraday_error.response.nil?
+
       parsed_error = JSON.parse(faraday_error.response[:body] || '{}')
       message = parsed_error.dig("error", "message")
 
