@@ -46,6 +46,13 @@ module MsGraphRest
 
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
         end
+
+        context 'when non json body' do
+          let(:faraday_error) { faraday_error_class.new StandardError.new, "<html>body</html>" }
+          let(:faraday_error_class) { Faraday::TimeoutError }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
+        end
       end
 
       describe 'Faraday::TimeoutError' do

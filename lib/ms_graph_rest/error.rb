@@ -43,7 +43,9 @@ module MsGraphRest
 
       return UnableToResolveUserId.new(faraday_error) if message == 'Unable to resolve User Id'
 
-      return faraday_error
+      faraday_error
+    rescue TypeError
+      faraday_error
     end
   end
 end
