@@ -1,0 +1,61 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('ebfc8ecf-0668-4a08-834b-7ab5371e989b')/todo/lists('AAMkADVmODRlNDI1LTRhZjItNGE3NC04OTc3LTQ2YzEzZTkxMTBjYwAuAAAAAABVdkm94BatRrmJb_BaPvf5AQAbeJ9DMbI7TJH_l_vpv2_3AAAAAAESAAA%3D')/tasks",
+  "value": [
+    {
+      "@odata.etag": "W/\"G3ifQzGyO0yR/pfr6b9vtwAAADyc5w==\"",
+      "importance": "normal",
+      "isReminderOn": false,
+      "status": "notStarted",
+      "title": "Duis ultrices nibh non eros fermentum sodales",
+      "createdDateTime": "2021-04-24T14:39:40.9397306Z",
+      "lastModifiedDateTime": "2021-04-24T14:49:42.2401448Z",
+      "id": "AAMkADVmODRlNDI1LTRhZjItNGE3NC04OTc3LTQ2YzEzZTkxMTBjYwBGAAAAAABVdkm94BatRrmJb_BaPvf5BwAbeJ9DMbI7TJH_l_vpv2_3AAAAAAESAAAbeJ9DMbI7TJH_l_vpv2_3AAAAPdIaAAA=",
+      "body": {
+        "content": "",
+        "contentType": "text"
+      }
+    },
+    {
+      "@odata.etag": "W/\"G3ifQzGyO0yR/pfr6b9vtwAAADyc5Q==\"",
+      "importance": "normal",
+      "isReminderOn": false,
+      "status": "notStarted",
+      "title": "Duis ultrices nibh non eros fermentum sodales",
+      "createdDateTime": "2021-04-24T14:36:06.0063949Z",
+      "lastModifiedDateTime": "2021-04-24T14:46:06.6874916Z",
+      "id": "AAMkADVmODRlNDI1LTRhZjItNGE3NC04OTc3LTQ2YzEzZTkxMTBjYwBGAAAAAABVdkm94BatRrmJb_BaPvf5BwAbeJ9DMbI7TJH_l_vpv2_3AAAAAAESAAAbeJ9DMbI7TJH_l_vpv2_3AAAAPdIZAAA=",
+      "body": {
+        "content": "",
+        "contentType": "text"
+      }
+    },
+    {
+      "@odata.etag": "W/\"G3ifQzGyO0yR/pfr6b9vtwAAADyc4w==\"",
+      "importance": "normal",
+      "isReminderOn": false,
+      "status": "notStarted",
+      "title": "consectetur adipiscing elit",
+      "createdDateTime": "2021-04-24T14:35:54.6642967Z",
+      "lastModifiedDateTime": "2021-04-24T14:45:55.4937377Z",
+      "id": "AAMkADVmODRlNDI1LTRhZjItNGE3NC04OTc3LTQ2YzEzZTkxMTBjYwBGAAAAAABVdkm94BatRrmJb_BaPvf5BwAbeJ9DMbI7TJH_l_vpv2_3AAAAAAESAAAbeJ9DMbI7TJH_l_vpv2_3AAAAPdIYAAA=",
+      "body": {
+        "content": "",
+        "contentType": "text"
+      }
+    },
+    {
+      "@odata.etag": "W/\"G3ifQzGyO0yR/pfr6b9vtwAAADyc4A==\"",
+      "importance": "normal",
+      "isReminderOn": false,
+      "status": "notStarted",
+      "title": "A new task from api",
+      "createdDateTime": "2021-04-24T14:28:10.5570752Z",
+      "lastModifiedDateTime": "2021-04-24T14:41:55.5046592Z",
+      "id": "AAMkADVmODRlNDI1LTRhZjItNGE3NC04OTc3LTQ2YzEzZTkxMTBjYwBGAAAAAABVdkm94BatRrmJb_BaPvf5BwAbeJ9DMbI7TJH_l_vpv2_3AAAAAAESAAAbeJ9DMbI7TJH_l_vpv2_3AAAAPdIXAAA=",
+      "body": {
+        "content": "This is the body of the task",
+        "contentType": "text"
+      }
+    }
+  ]
+}

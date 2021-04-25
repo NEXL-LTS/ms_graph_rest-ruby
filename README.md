@@ -300,6 +300,35 @@ client.planner_tasks.get # default's to me
   end
 ```
 
+#### Todo Lists ####
+
+reference https://docs.microsoft.com/en-us/graph/api/resources/todotasklist?view=graph-rest-1.0
+
+Fetch the users todo lists. Note the user always have one default list.
+```ruby
+result = client.todo_lists.get
+result.each do |todo_list|
+  puts todo_list.display_name
+  puts "  Id:  #{todo_list.id}"
+  puts "  Default List:  #{todo_list.wellknownListName == 'defaultList'}"
+  puts "" 
+end
+```
+
+Fetch tasks for a todo list like this
+
+```ruby
+todo_list = client.todo_lists.get.first.id
+tasks = client.todo_list_tasks(todo_list).get 
+tasks.each do |task|
+  puts task.title
+  puts task.body
+  puts task.s
+end
+```
+
+See all attributes here: https://docs.microsoft.com/en-us/graph/api/todotask-update?view=graph-rest-1.0&tabs=http
+
 ## In Tests
 
 You can make the http requests read from file instead of make actual http requests.

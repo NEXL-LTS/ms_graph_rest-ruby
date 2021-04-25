@@ -1,0 +1,20 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.todoTaskList",
+      "id": "AAMkADIyAAAAABrJAAA=",
+      "displayName": "Tasks",
+      "isOwner": true,
+      "isShared": false,
+      "wellknownListName": "defaultList"
+    },
+    {
+      "@odata.type": "#microsoft.graph.todoTaskList",
+      "id": "AAMkADIyAAAEFTTrJAAA=",
+      "displayName": "Monthly Tasks",
+      "isOwner":true,
+      "isShared": false,
+      "wellknownListName": "none"
+    }
+  ]
+}
