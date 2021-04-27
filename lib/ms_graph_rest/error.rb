@@ -38,13 +38,13 @@ module MsGraphRest
     def self.error(faraday_error)
       return faraday_error if faraday_error.response.nil?
 
-      parsed_error = JSON.parse(faraday_error.response[:body] || '{}')
+      parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')
       message = parsed_error.dig("error", "message")
 
       return UnableToResolveUserId.new(faraday_error) if message == 'Unable to resolve User Id'
 
       faraday_error
-    rescue TypeError
+    rescue TypeError, MultiJson::ParseError
       faraday_error
     end
   end
