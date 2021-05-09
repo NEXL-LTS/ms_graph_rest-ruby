@@ -91,8 +91,8 @@ module MsGraphRest
         c.use Faraday::Response::RaiseError
         c.authorization :Bearer, access_token
         c.adapter faraday_adapter
-        c.options.timeout = 25 # open/read timeout in seconds
-        c.options.open_timeout = 25 # connection open timeout in seconds
+        c.options.timeout = 60 # open/read timeout in seconds
+        c.options.open_timeout = 60 # connection open timeout in seconds
       end
     end
 
