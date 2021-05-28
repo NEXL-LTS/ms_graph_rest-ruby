@@ -1,4 +1,7 @@
 # MsGraphRest
+
+[![CircleCI](https://circleci.com/gh/NEXL-LTS/ms_graph_rest-ruby.svg?style=svg)](https://circleci.com/gh/NEXL-LTS/ms_graph_rest-ruby)
+
 ## Installation
 
 Add this line to your application's Gemfile:
