@@ -8,7 +8,7 @@ module MsGraphRest
 
     describe 'Get todo lists' do
       let(:path) { 'me' }
-      let(:body) { File.read("spec/fixtures/todo_lists.json") }
+      let(:body) { File.read("#{__dir__}/todo_lists.json") }
       let(:result) { todo_lists.get }
 
       before do
@@ -20,6 +20,5 @@ module MsGraphRest
       it { expect(result.size).to eq(2) }
       it { expect(result.first).to have_attributes(id: "AAMkADIyAAAAABrJAAA=", displayName: "Tasks") }
     end
-
   end
 end

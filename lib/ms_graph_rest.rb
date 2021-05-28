@@ -168,7 +168,6 @@ module MsGraphRest
     def todo_list_tasks(todo_list_id)
       TodoListTasks.new(todo_list_id, client: connection)
     end
-
   end
 
   def self.new_client(access_token:)
