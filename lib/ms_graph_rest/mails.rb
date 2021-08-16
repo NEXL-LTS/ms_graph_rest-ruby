@@ -43,13 +43,13 @@ module MsGraphRest
       @client = client
     end
 
-    def get(path)
-      mail = client.get(path, {})
+    def get(path, query: {})
+      mail = client.get(path, query)
       Response.build(mail)
     end
 
-    def fetch(id)
-      mail = client.get("me/messages/#{id}", {})
+    def fetch(id, query: {})
+      mail = client.get("me/messages/#{id}", query)
       Response.build(mail)
     end
 
