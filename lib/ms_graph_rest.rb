@@ -3,17 +3,23 @@ require 'faraday'
 require 'multi_json'
 
 require_relative 'ms_graph_rest/version'
-require_relative 'ms_graph_rest/mails'
-require_relative 'ms_graph_rest/error'
-require_relative 'ms_graph_rest/users'
-require_relative 'ms_graph_rest/subscriptions'
+require_relative 'ms_graph_rest/calendar_create_event'
+require_relative 'ms_graph_rest/calendar_get_schedule'
+require_relative 'ms_graph_rest/calendar_groups'
 require_relative 'ms_graph_rest/calendar_view'
+require_relative 'ms_graph_rest/calendars'
+require_relative 'ms_graph_rest/error'
+require_relative 'ms_graph_rest/find_rooms'
+require_relative 'ms_graph_rest/groups'
+require_relative 'ms_graph_rest/mails'
 require_relative 'ms_graph_rest/messages'
 require_relative 'ms_graph_rest/photos'
-require_relative 'ms_graph_rest/groups'
+require_relative 'ms_graph_rest/places'
 require_relative 'ms_graph_rest/planner_tasks'
-require_relative 'ms_graph_rest/todo_lists'
+require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/todo_list_tasks'
+require_relative 'ms_graph_rest/todo_lists'
+require_relative 'ms_graph_rest/users'
 
 class Faraday::FileReadAdapter < Faraday::Adapter
   def self.folder=(val)
@@ -70,23 +76,24 @@ module MsGraphRest
   end
 
   class BaseConnection
-    attr_reader :access_token
+    attr_reader :access_token, :version
 
-    def initialize(access_token:)
+    def initialize(access_token:, version: 'v1.0')
       @access_token = access_token.to_str.clone.freeze
+      @version = version
     end
   end
 
   class FaradayConnection < BaseConnection
     attr_reader :faraday_adapter
 
-    def initialize(access_token:, faraday_adapter:)
-      super(access_token: access_token)
+    def initialize(access_token:, faraday_adapter:, version: 'v1.0')
+      super(access_token: access_token, version: version)
       @faraday_adapter = faraday_adapter
     end
 
     def conn
-      @conn ||= Faraday.new(url: 'https://graph.microsoft.com/v1.0/',
+      @conn ||= Faraday.new(url: "https://graph.microsoft.com/#{@version}/",
                             headers: { 'Content-Type' => 'application/json' }) do |c|
         c.use Faraday::Response::RaiseError
         c.authorization :Bearer, access_token
@@ -96,24 +103,28 @@ module MsGraphRest
       end
     end
 
-    def get_raw(path, params)
-      conn.get(path, params)
+    def get_raw(path, params, headers = {})
+      conn.get(path, params, headers)
     rescue Faraday::Error => e
       raise MsGraphRest.wrap_request_error(e)
     end
 
-    def get(path, params)
-      response = get_raw(path, params)
+    # @param consistencylevel [String] "eventual"
+    def get(path, params, consistencylevel: nil, headers: {})
+      if consistencylevel
+        headers["consistencylevel"] = consistencylevel
+      end
+      response = get_raw(path, params, headers)
       parse_response(response)
     end
 
-    def post(path, body)
-      response = conn.post(path, body.to_json)
+    def post(path, body, headers: {})
+      response = conn.post(path, body.to_json, headers)
       parse_response(response)
     end
 
-    def patch(path, body)
-      response = conn.patch(path, body.to_json)
+    def patch(path, body, headers: {})
+      response = conn.patch(path, body.to_json, headers)
       parse_response(response)
     end
 
@@ -133,10 +144,11 @@ module MsGraphRest
   class Client
     attr_reader :connection
 
-    def initialize(access_token:, faraday_adapter: Faraday.default_adapter)
-      @connection = FaradayConnection.new(access_token: access_token, faraday_adapter: faraday_adapter)
+    def initialize(access_token:, faraday_adapter: Faraday.default_adapter, version: 'v1.0')
+      @connection = FaradayConnection.new(access_token: access_token, faraday_adapter: faraday_adapter, version: version)
     end
 
+    # @return Users
     def users
       Users.new(client: connection)
     end
@@ -145,16 +157,44 @@ module MsGraphRest
       Subscriptions.new(client: connection)
     end
 
+    # @return MsGraphRest::Mails
     def mails
       Mails.new(client: connection)
     end
 
+    # @return MsGraphRest::Photos
     def photos
       Photos.new(client: connection)
     end
 
-    def calendar_view(path = '/me/calendar/')
-      CalendarView.new(path, client: connection)
+    # @return MsGraphRest::CalendarView
+    def calendar_view
+      CalendarView.new(client: connection)
+    end
+
+    # @return MsGraphRest::CalendarGetSchedule
+    def calendar_get_schedule
+      CalendarGetSchedule.new(client: connection)
+    end
+
+    # @return MsGraphRest::CalendarCreateEvent
+    def calendar_create_event
+      CalendarCreateEvent.new(client: connection)
+    end
+
+    # @return MsGraphRest::CalendarCreateEvent
+    def calendar_groups
+      CalendarGroups.new(client: connection)
+    end
+
+    # @return MsGraphRest::CalendarCreateEvent
+    def calendars
+      Calendars.new(client: connection)
+    end
+
+    # @return MsGraphRest::Places
+    def places
+      Places.new(client: connection)
     end
 
     def messages(path = 'me')
