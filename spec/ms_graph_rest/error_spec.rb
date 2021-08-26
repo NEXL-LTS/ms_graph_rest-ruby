@@ -57,6 +57,12 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(UnableToResolveUserId) }
         end
 
+        context 'when Resource Unhealthy' do
+          let(:body) { { "error" => { "code" => "ResourceUnhealthy", "message" => "SystemMemoryProtectionUtilizationMonitor is unhealthy." } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceUnhealthyError) }
+        end
+
         context 'when not Unable to resolve User Id' do
           let(:body) { { "error" => { "code" => "InternalServerError" } } }
 

@@ -56,14 +56,19 @@ module MsGraphRest
   class UnableToResolveUserId < Error
   end
 
+  class ResourceUnhealthyError < Error
+  end
+
   class ServerErrorCreator
     def self.error(faraday_error)
       return faraday_error if faraday_error.response.nil?
 
       parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')
       message = parsed_error.dig("error", "message")
+      error_code = parsed_error.dig("error", "code")
 
       return UnableToResolveUserId.new(faraday_error) if message == 'Unable to resolve User Id'
+      return ResourceUnhealthyError.new(faraday_error) if error_code == 'ResourceUnhealthy'
 
       faraday_error
     rescue TypeError, MultiJson::ParseError
