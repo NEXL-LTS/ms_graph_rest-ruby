@@ -17,10 +17,19 @@ module MsGraphRest
   class Error < StandardError
   end
 
-  class ResourceNotFound < Error
+  class HttpError < StandardError
+    attr_reader :response
+
+    def initialize(input)
+      @response = input.response if input.respond_to?(:response)
+      super(input)
+    end
   end
 
-  class AuthenticationError < Error
+  class ResourceNotFound < HttpError
+  end
+
+  class AuthenticationError < HttpError
   end
 
   class BadRequestErrorCreator
@@ -33,7 +42,7 @@ module MsGraphRest
     end
   end
 
-  class MailboxConcurrencyLimitError < Error
+  class MailboxConcurrencyLimitError < HttpError
   end
 
   class ClientErrorCreator
@@ -53,10 +62,10 @@ module MsGraphRest
     end
   end
 
-  class UnableToResolveUserId < Error
+  class UnableToResolveUserId < HttpError
   end
 
-  class ResourceUnhealthyError < Error
+  class ResourceUnhealthyError < HttpError
   end
 
   class ServerErrorCreator
