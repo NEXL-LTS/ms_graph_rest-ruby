@@ -2,7 +2,7 @@ module MsGraphRest
   def self.wrap_request_error(faraday_error)
     case faraday_error
     when Faraday::ResourceNotFound
-      ResourceNotFound.new(faraday_error)
+      NotFoundErrorCreator.error(faraday_error)
     when Faraday::BadRequestError
       BadRequestErrorCreator.error(faraday_error)
     when Faraday::ClientError
@@ -27,6 +27,24 @@ module MsGraphRest
   end
 
   class ResourceNotFound < HttpError
+  end
+
+  class UserNotFound < ResourceNotFound
+  end
+
+  class NotFoundErrorCreator
+    def self.error(faraday_error)
+      if faraday_error.response
+        parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')
+        message = parsed_error.dig("error", "message")
+
+        return UserNotFound.new(faraday_error) if message == 'User not found'
+      end
+
+      ResourceNotFound.new(faraday_error)
+    rescue TypeError, MultiJson::ParseError
+      ResourceNotFound.new(faraday_error)
+    end
   end
 
   class AuthenticationError < HttpError

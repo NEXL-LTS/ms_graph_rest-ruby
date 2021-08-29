@@ -12,3 +12,4 @@
 /vendor/bundle
 /.vscode
 /spec/tmp
+/.byebug_history

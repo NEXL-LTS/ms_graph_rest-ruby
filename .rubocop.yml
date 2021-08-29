@@ -10,6 +10,9 @@ AllCops:
 Style:
   Enabled: false
 
+Bundler/GemFilename:
+  EnforcedStyle: gems.rb
+
 Metrics/AbcSize:
   Max: 25
 

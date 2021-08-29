@@ -18,6 +18,13 @@ module MsGraphRest
         it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(AuthenticationError) }
       end
 
+      describe 'UserNotFound' do
+        let(:body) { { "error" => { "code" => "AuthenticationError", "message" => "User not found" } } }
+        let(:faraday_error_class) { Faraday::ResourceNotFound }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(UserNotFound) }
+      end
+
       describe 'ResourceNotFound' do
         let(:body) { { "error" => { "code" => "AuthenticationError" } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
