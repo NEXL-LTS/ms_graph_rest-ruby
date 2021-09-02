@@ -15,6 +15,18 @@ RSpec.describe MsGraphRest do
         expect { subject.get('path', {}) }.to raise_error(MsGraphRest::ResourceNotFound)
       end
     end
+
+    context 'when parsing error' do
+      subject { described_class.new(access_token: 'access_token').connection }
+
+      before {
+        allow(subject.conn).to receive(:get).and_return(OpenStruct.new(body: '{'))
+      }
+
+      it 'raises error' do
+        expect { subject.get('path', {}) }.to raise_error(MsGraphRest::ParseError)
+      end
+    end
   end
 
   describe '.use_fake' do

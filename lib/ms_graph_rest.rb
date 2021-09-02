@@ -104,21 +104,29 @@ module MsGraphRest
 
     def get(path, params)
       response = get_raw(path, params)
-      MultiJson.load(response.body)
+      parse_response(response)
     end
 
     def post(path, body)
       response = conn.post(path, body.to_json)
-      MultiJson.load(response.body)
+      parse_response(response)
     end
 
     def patch(path, body)
       response = conn.patch(path, body.to_json)
-      MultiJson.load(response.body)
+      parse_response(response)
     end
 
     def delete(path)
       conn.delete(path)
+    end
+
+    private
+
+    def parse_response(response)
+      MultiJson.load(response.body)
+    rescue MultiJson::ParseError => e
+      raise MsGraphRest::ParseError.new(e.message, response)
     end
   end
 

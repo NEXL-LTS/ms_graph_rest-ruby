@@ -17,6 +17,15 @@ module MsGraphRest
   class Error < StandardError
   end
 
+  class ParseError < Error
+    attr_reader :response
+
+    def initialize(input, response = nil)
+      @response = response
+      super(input)
+    end
+  end
+
   class HttpError < StandardError
     attr_reader :response
 
