@@ -41,13 +41,18 @@ module MsGraphRest
   class UserNotFound < ResourceNotFound
   end
 
+  class MailboxNotEnabledError < ResourceNotFound
+  end
+
   class NotFoundErrorCreator
     def self.error(faraday_error)
       if faraday_error.response
         parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')
         message = parsed_error.dig("error", "message")
+        code = parsed_error.dig("error", "code")
 
         return UserNotFound.new(faraday_error) if message == 'User not found'
+        return MailboxNotEnabledError.new(faraday_error) if code == 'MailboxNotEnabledForRESTAPI'
       end
 
       ResourceNotFound.new(faraday_error)
