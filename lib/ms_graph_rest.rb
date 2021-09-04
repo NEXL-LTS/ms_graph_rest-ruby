@@ -126,7 +126,7 @@ module MsGraphRest
     def parse_response(response)
       MultiJson.load(response.body)
     rescue MultiJson::ParseError => e
-      raise MsGraphRest::ParseError.new(e.message, response)
+      raise MsGraphRest::ParseError.new(e.message, response.body)
     end
   end
 
