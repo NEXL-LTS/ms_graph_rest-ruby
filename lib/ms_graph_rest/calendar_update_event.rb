@@ -3,12 +3,13 @@ require_relative 'modifying_action'
 require_relative 'response'
 
 module MsGraphRest
-  class CalendarCreateEvent < ModifyingAction
+  class CalendarUpdateEvent < ModifyingAction
     Response.example("value" => [], "@odata.context" => "", "@odata.nextLink" => "")
 
     # Issues getSchedule. If user_id is given, uses the
     #  /users/ID/calendar/getSchedule, otherwise me/calendar/getSchedule endpoint
     # @return Response
+    # @param id [String] MSOffice Event ID
     # @param start_time [Time] From Date Time
     # @param end_time [Time] To Date Time
     # @param subject [String]
@@ -20,9 +21,9 @@ module MsGraphRest
     # @param draft [Boolean]
     # @param allow_new_time_proposals [Boolean]
     # @param attendees [Array]
-    # @param show_as [String] busy, tentative
     # @param location [Hash]
     def create(
+        id:,
         subject:,
         body:,
         start_time:,
@@ -31,9 +32,9 @@ module MsGraphRest
         attendees:,
         allow_new_time_proposals:,
         user_id: nil,
+        show_as: 'busy',
         all_day: false,
         draft: false,
-        show_as: 'busy',
         sensitivity: 'normal',
         importance: 'normal',
         content_type: "HTML"
@@ -65,9 +66,10 @@ module MsGraphRest
         attendees: attendees,
       }.compact
 
-      path = user_id ? "users/#{CGI.escape(user_id)}/events" : "me/events"
+      path = user_id ? "users/#{CGI.escape(user_id)}/events/#{id}" : "me/events/#{id}"
 
-      Response.new(client.post(path, body))
+      Response.new(client.patch(path, body))
     end
   end
 end
+

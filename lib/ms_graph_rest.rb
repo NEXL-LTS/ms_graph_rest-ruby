@@ -4,10 +4,14 @@ require 'multi_json'
 
 require_relative 'ms_graph_rest/version'
 require_relative 'ms_graph_rest/calendar_create_event'
+require_relative 'ms_graph_rest/calendar_update_event'
+require_relative 'ms_graph_rest/calendar_cancel_event'
 require_relative 'ms_graph_rest/calendar_get_schedule'
 require_relative 'ms_graph_rest/calendar_groups'
 require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/calendars'
+require_relative 'ms_graph_rest/online_meetings'
+
 require_relative 'ms_graph_rest/error'
 require_relative 'ms_graph_rest/find_rooms'
 require_relative 'ms_graph_rest/groups'
@@ -135,7 +139,12 @@ module MsGraphRest
     private
 
     def parse_response(response)
-      MultiJson.load(response.body)
+      body = response.body
+      if body.empty?
+        true
+      else
+        MultiJson.load(response.body)
+      end
     rescue MultiJson::ParseError => e
       raise MsGraphRest::ParseError.new(e.message, response.body)
     end
@@ -177,9 +186,24 @@ module MsGraphRest
       CalendarGetSchedule.new(client: connection)
     end
 
+    # @return MsGraphRest::OnlineMeetings
+    def online_meetings
+      OnlineMeetings.new(client: connection)
+    end
+
     # @return MsGraphRest::CalendarCreateEvent
     def calendar_create_event
       CalendarCreateEvent.new(client: connection)
+    end
+
+    # @return MsGraphRest::CalendarUpdateEvent
+    def calendar_update_event
+      CalendarUpdateEvent.new(client: connection)
+    end
+
+    # @return MsGraphRest::CalendarCancelEvent
+    def calendar_cancel_event
+      CalendarCancelEvent.new(client: connection)
     end
 
     # @return MsGraphRest::CalendarCreateEvent
