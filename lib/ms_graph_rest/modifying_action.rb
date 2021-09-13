@@ -1,6 +1,7 @@
 module MsGraphRest
   class ModifyingAction
     attr_reader :client, :query
+
     def initialize(client:)
       @client = client
     end
@@ -10,4 +11,3 @@ module MsGraphRest
     end
   end
 end
-

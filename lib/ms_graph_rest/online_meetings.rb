@@ -25,7 +25,9 @@ module MsGraphRest
     end
 
     # https://docs.microsoft.com/en-us/graph/api/onlinemeeting-update
-    def update(id:, subject: nil, start_date_time: nil, end_date_time: nil, participants: nil, user_id: nil, accept_language: nil)
+    def update(
+      id:, subject: nil, start_date_time: nil, end_date_time: nil, participants: nil, user_id: nil, accept_language: nil
+    )
       start_date_time = start_date_time.iso8601 if start_date_time.respond_to?(:iso8601)
       end_date_time = end_date_time.iso8601 if end_date_time.respond_to?(:iso8601)
 

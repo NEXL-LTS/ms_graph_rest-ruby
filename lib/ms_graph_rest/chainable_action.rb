@@ -1,6 +1,9 @@
+require "active_support/core_ext/hash/indifferent_access"
+
 module MsGraphRest
   class ChainableAction
     attr_reader :client, :query
+
     def initialize(client:, query: {})
       @client = client
       @query = query.with_indifferent_access
@@ -29,7 +32,7 @@ module MsGraphRest
     # Uses .get underhood
     # @param **args
     # @yield ResponseWithPagination
-    def each_page(**args, &block)
+    def each_page(**args)
       loop do
         response = get(**args)
         yield(response)

@@ -23,21 +23,21 @@ module MsGraphRest
     # @param show_as [String] busy, tentative
     # @param location [Hash]
     def create(
-        subject:,
-        body:,
-        start_time:,
-        end_time:,
-        location:,
-        attendees:,
-        allow_new_time_proposals:,
-        user_id: nil,
-        all_day: false,
-        draft: false,
-        show_as: 'busy',
-        sensitivity: 'normal',
-        importance: 'normal',
-        content_type: "HTML"
-      )
+      subject:,
+      body:,
+      start_time:,
+      end_time:,
+      location:,
+      attendees:,
+      allow_new_time_proposals:,
+      user_id: nil,
+      all_day: false,
+      draft: false,
+      show_as: 'busy',
+      sensitivity: 'normal',
+      importance: 'normal',
+      content_type: "HTML"
+    )
       start_time = start_time.iso8601 if start_time.respond_to?(:iso8601)
       end_time = end_time.iso8601 if end_time.respond_to?(:iso8601)
 

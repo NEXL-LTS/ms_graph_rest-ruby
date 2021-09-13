@@ -154,7 +154,8 @@ module MsGraphRest
     attr_reader :connection
 
     def initialize(access_token:, faraday_adapter: Faraday.default_adapter, version: 'v1.0')
-      @connection = FaradayConnection.new(access_token: access_token, faraday_adapter: faraday_adapter, version: version)
+      @connection = FaradayConnection.new(access_token: access_token, faraday_adapter: faraday_adapter,
+                                          version: version)
     end
 
     # @return Users

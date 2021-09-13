@@ -8,10 +8,12 @@ module MsGraphRest
 
     attr_reader :client, :path, :query
 
+    # rubocop:disable Lint/MissingSuper
     def initialize(client:, query: {})
       @client = client
       @query = query
     end
+    # rubocop:enable Lint/MissingSuper
 
     def get(user_id:)
       path = user_id ? "users/#{user_id}/calendarGroups" : "me/calendarGroups"
@@ -19,4 +21,3 @@ module MsGraphRest
     end
   end
 end
-

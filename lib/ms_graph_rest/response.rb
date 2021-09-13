@@ -22,4 +22,3 @@ module MsGraphRest
     end
   end
 end
-
