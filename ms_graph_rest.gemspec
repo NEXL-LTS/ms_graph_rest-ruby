@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.add_dependency 'activesupport', '>= 3.2', '< 7.0'
   spec.add_dependency 'camel_snake_struct', '>= 0.1.0', '< 2.0'
-  spec.add_dependency 'faraday', '>= 0.10.0', '< 2.0'
+  spec.add_dependency 'faraday', '>= 1.0.0', '< 2.0'
   spec.add_dependency 'hashie', '>= 3.1.0', '< 5.0'
   spec.add_dependency 'multi_json', '>= 1.4.0', '< 2.0'
 end

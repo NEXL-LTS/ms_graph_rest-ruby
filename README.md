@@ -52,8 +52,8 @@ result.each do |user|
   puts user.display_name
 end
 # Get Next Page
-if result.get_next_query
-  next_result = client.users(**result.get_next_query)
+if result.next_get_query
+  next_result = client.users.get(**result.next_get_query)
   next_result.each do |user|
     puts user.display_name
   end
@@ -170,6 +170,47 @@ using $filter and $orderBy on another user's box
   end
 ```
 
+#### Delta messages
+
+https://docs.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0&tabs=http
+
+delta messages on own inbox
+
+```ruby
+  result = client.messages_delta('me','inbox').get
+  result.value.each do |message|
+    puts message.id
+    puts message.subject
+    puts message.sender.email_address.name
+    puts message.sender.email_address.address
+    # etc
+  end
+
+  if result.next_get_query
+    next_result = client.messages_delta('me','inbox').get(**result.next_get_query)
+  end
+
+  if result.delta_query
+    PretendStorage.save_for_later(result.delta_query)
+    # ... after saving the delta
+    query = PretendStorage.restore
+    delta_result = client.messages_delta(**query)
+  end
+```
+
+example using select on  another user's box
+
+```ruby
+  result = client.messages_delta("users/person@example.com", 'outbox')
+                 .select([:sender, :to_recipients, :received_date_time, :created_date_time])
+                 .received_after(Date.parse('2021-10-04'))
+                 .order_by('receivedDateTime desc')
+                 .get
+  
+  result.value.each do |message|
+    # etc
+  end
+```
 
 ### Calendar
 
@@ -231,7 +272,7 @@ getting next link query params
   result = client.calendar_view.get(start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00')
   puts result.odata_next_link # ...?endDateTime=2021-01-12T22%3a39%3a15Z&startDateTime=2020-01-12T22%3a39%3a15Z&%24top=10&%24skip=10
   puts result.next_get_query # {start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00', skip: 10}
-  next_result = client.calendar_view(**result.next_get_query)
+  next_result = client.calendar_view.get(**result.next_get_query)
 ```
 
 ### Groups
@@ -272,7 +313,7 @@ using select and next link query params
     puts group.mail_enabled
   end
 
-  next_result = client.groups(**result.next_get_query)
+  next_result = client.groups.get(**result.next_get_query)
 ```
 
 ### Planner Tasks

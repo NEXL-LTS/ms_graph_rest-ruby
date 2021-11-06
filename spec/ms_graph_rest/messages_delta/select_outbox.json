@@ -1,0 +1,48 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#Collection(message)",
+  "@odata.deltaLink": "https://graph.microsoft.com/v1.0/users/p@example.com/mailFolders/outbox/messages/delta?$deltatoken=dtest",
+  "value": [
+      {
+          "@odata.type": "#microsoft.graph.message",
+          "@odata.etag": "W/\"CQAAABYAAAAiIsqMbYjsT5e/T7KzowPTAAP+Mdec\"",
+          "createdDateTime": "2021-11-01T15:08:41Z",
+          "receivedDateTime": "2021-11-01T15:08:42Z",
+          "id": "AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OABGAAAAAAAiQ8W967B7TKBjgx9rVEURBwAiIsqMbYjsT5e-T7KzowPTAAAAAAEMAAAiIsqMbYjsT5e-T7KzowPTAAP_mA3XAAA=",
+          "sender": {
+              "emailAddress": {
+                  "name": "Microsoft Viva",
+                  "address": "viva-noreply@microsoft.com"
+              }
+          },
+          "toRecipients": [
+              {
+                  "emailAddress": {
+                      "name": "Megan Bowen",
+                      "address": "MeganB@M365x214355.onmicrosoft.com"
+                  }
+              }
+          ]
+      },
+      {
+          "@odata.type": "#microsoft.graph.message",
+          "@odata.etag": "W/\"CQAAABYAAAAiIsqMbYjsT5e/T7KzowPTAAPrWkXQ\"",
+          "createdDateTime": "2021-10-04T15:22:32Z",
+          "receivedDateTime": "2021-10-04T15:22:32Z",
+          "id": "AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OABGAAAAAAAiQ8W967B7TKBjgx9rVEURBwAiIsqMbYjsT5e-T7KzowPTAAAAAAEMAAAiIsqMbYjsT5e-T7KzowPTAAPruCRwAAA=",
+          "sender": {
+              "emailAddress": {
+                  "name": "Microsoft Viva",
+                  "address": "viva-noreply@microsoft.com"
+              }
+          },
+          "toRecipients": [
+              {
+                  "emailAddress": {
+                      "name": "Megan Bowen",
+                      "address": "MeganB@M365x214355.onmicrosoft.com"
+                  }
+              }
+          ]
+      }
+  ]
+}

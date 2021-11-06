@@ -102,7 +102,7 @@ module MsGraphRest
     end
 
     describe 'Use $filter and $top to get one group with a display name that starts
-              with \'a\' including a count of returned objects' do
+ with \'a\' including a count of returned objects' do
       before do
         params = "$count=true&$filter=startswith(displayName,%20'a')&$orderBy=displayName&$top=1"
         stub_request(:get, "https://graph.microsoft.com/v1.0/groups?#{params}")
@@ -136,7 +136,7 @@ module MsGraphRest
     end
 
     describe 'Use $search to get groups with display names that contain the letters
-              \'Video\' including a count of returned objects' do
+ \'Video\' including a count of returned objects' do
       before do
         params = "$count=true&$search=%22displayName:Video%22"
         stub_request(:get, "https://graph.microsoft.com/v1.0/groups?#{params}")

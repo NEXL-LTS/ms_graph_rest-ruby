@@ -1,0 +1,116 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#Collection(message)",
+  "@odata.nextLink": "https://graph.microsoft.com/v1.0/me/mailFolders/Inbox/messages/delta?$skiptoken=stest",
+  "value": [
+      {
+          "@odata.type": "#microsoft.graph.message",
+          "@odata.etag": "etest",
+          "createdDateTime": "2021-11-01T15:08:41Z",
+          "lastModifiedDateTime": "2021-11-01T15:08:43Z",
+          "changeKey": "ctest",
+          "categories": ["cat1"],
+          "receivedDateTime": "2021-11-01T15:08:42Z",
+          "sentDateTime": "2021-11-01T15:08:42Z",
+          "hasAttachments": false,
+          "internetMessageId": "imitest",
+          "subject": "stest",
+          "bodyPreview": "bptest",
+          "importance": "normal",
+          "parentFolderId": "pfitest",
+          "conversationId": "citest",
+          "conversationIndex": "citest",
+          "isDeliveryReceiptRequested": false,
+          "isReadReceiptRequested": false,
+          "isRead": false,
+          "isDraft": false,
+          "webLink": "wltest",
+          "inferenceClassification": "focused",
+          "id": "itest",
+          "body": {
+              "contentType": "html",
+              "content": "ctest"
+          },
+          "sender": {
+              "emailAddress": {
+                  "name": "nTest",
+                  "address": "test@microsoft.com"
+              }
+          },
+          "from": {
+              "emailAddress": {
+                  "name": "fenTest",
+                  "address": "testa@microsoft.com"
+              }
+          },
+          "toRecipients": [
+              {
+                  "emailAddress": {
+                      "name": "trenTest",
+                      "address": "testb@onmicrosoft.com"
+                  }
+              }
+          ],
+          "ccRecipients": [],
+          "bccRecipients": [],
+          "replyTo": [],
+          "flag": {
+              "flagStatus": "notFlagged"
+          }
+      },
+      {
+        "@odata.type": "#microsoft.graph.message",
+        "@odata.etag": "etest",
+        "createdDateTime": "2021-11-01T15:08:41Z",
+        "lastModifiedDateTime": "2021-11-01T15:08:43Z",
+        "changeKey": "ctest",
+        "categories": ["cat1"],
+        "receivedDateTime": "2021-11-01T15:08:42Z",
+        "sentDateTime": "2021-11-01T15:08:42Z",
+        "hasAttachments": false,
+        "internetMessageId": "imitest",
+        "subject": "stest",
+        "bodyPreview": "bptest",
+        "importance": "normal",
+        "parentFolderId": "pfitest",
+        "conversationId": "citest",
+        "conversationIndex": "citest",
+        "isDeliveryReceiptRequested": false,
+        "isReadReceiptRequested": false,
+        "isRead": false,
+        "isDraft": false,
+        "webLink": "wltest",
+        "inferenceClassification": "focused",
+        "id": "itest",
+        "body": {
+            "contentType": "html",
+            "content": "ctest"
+        },
+        "sender": {
+            "emailAddress": {
+                "name": "nTest",
+                "address": "test@microsoft.com"
+            }
+        },
+        "from": {
+            "emailAddress": {
+                "name": "fenTest",
+                "address": "testa@microsoft.com"
+            }
+        },
+        "toRecipients": [
+            {
+                "emailAddress": {
+                    "name": "trenTest",
+                    "address": "testb@onmicrosoft.com"
+                }
+            }
+        ],
+        "ccRecipients": [],
+        "bccRecipients": [],
+        "replyTo": [],
+        "flag": {
+            "flagStatus": "notFlagged"
+        }
+    }
+  ]
+}

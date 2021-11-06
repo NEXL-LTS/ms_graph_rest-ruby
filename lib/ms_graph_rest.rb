@@ -9,6 +9,7 @@ require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/messages'
+require_relative 'ms_graph_rest/messages_delta'
 require_relative 'ms_graph_rest/photos'
 require_relative 'ms_graph_rest/groups'
 require_relative 'ms_graph_rest/planner_tasks'
@@ -89,7 +90,7 @@ module MsGraphRest
       @conn ||= Faraday.new(url: 'https://graph.microsoft.com/v1.0/',
                             headers: { 'Content-Type' => 'application/json' }) do |c|
         c.use Faraday::Response::RaiseError
-        c.authorization :Bearer, access_token
+        c.request :authorization, 'Bearer', access_token
         c.adapter faraday_adapter
         c.options.timeout = 60 # open/read timeout in seconds
         c.options.open_timeout = 60 # connection open timeout in seconds
@@ -159,6 +160,10 @@ module MsGraphRest
 
     def messages(path = 'me')
       Messages.new(path, client: connection)
+    end
+
+    def messages_delta(path = 'me', folder = 'inbox')
+      MessagesDelta.new(path, folder, client: connection)
     end
 
     def groups
