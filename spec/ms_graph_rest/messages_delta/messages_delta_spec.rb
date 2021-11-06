@@ -179,5 +179,36 @@ module MsGraphRest
         client.messages_delta(path, folder).get(**result.delta_query)
       end
     end
+
+    describe 'default with deleted message' do
+      let(:result) { messages_delta.get }
+
+      let(:path) { 'me' }
+      let(:folder) { 'inbox' }
+
+      let(:body) { fixture('deleted_message') }
+
+      before do
+        stub_request(:get, "https://graph.microsoft.com/v1.0/me/mailFolders/inbox/messages/delta")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        expect(result).to have_attributes(
+          odata_context: 'https://graph.microsoft.com/v1.0/$metadata#Collection(message)',
+          odata_next_link: 'https://graph.microsoft.com/v1.0/me/mailFolders/Inbox/messages/delta?$skiptoken=stest',
+          next_get_query: { skiptoken: 'stest' },
+          odata_delta_link: nil
+        )
+      end
+
+      describe 'first message' do
+        let(:first_message) { result.value.first }
+
+        it do
+          expect(first_message.removed).to have_attributes(reason: "changed")
+        end
+      end
+    end
   end
 end

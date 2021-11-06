@@ -1,0 +1,10 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#Collection(message)",
+  "@odata.nextLink": "https://graph.microsoft.com/v1.0/me/mailFolders/Inbox/messages/delta?$skiptoken=stest",
+  "value": [
+      {
+          "id": "itest",
+          "@removed": { "reason": "changed" }
+      }
+  ]
+}

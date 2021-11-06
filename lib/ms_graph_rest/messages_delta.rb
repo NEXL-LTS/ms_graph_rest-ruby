@@ -28,7 +28,10 @@ module MsGraphRest
         to_hash
       end
     end
-    Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "", "@odata.deltaLink" => "")
+    Response.example('value' => [{ "id" => "", "@removed" => { "reason" => "changed" } }],
+                     "@odata.context" => "",
+                     "@odata.nextLink" => "",
+                     "@odata.deltaLink" => "")
 
     attr_reader :client, :path, :folder, :query
 
