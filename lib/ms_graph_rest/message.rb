@@ -1,0 +1,29 @@
+module MsGraphRest
+  class Response < CamelSnakeStruct
+  end
+
+  class Message
+    attr_reader :client, :path, :query
+
+    def initialize(path, client:, query: {})
+      @path = path
+      @client = client
+      @query = query
+    end
+
+    def get(id, select: nil)
+      Response.new(client.get("#{path}/messages/#{id}", query.merge({ '$select' => select }.compact)))
+    end
+
+    def select(val)
+      val = val.map(&:to_s).map { |v| v.camelize(:lower) }.join(',') if val.is_a?(Array)
+      new_with_query(query.merge('$select' => val))
+    end
+
+    private
+
+    def new_with_query(query)
+      self.class.new(path, client: client, query: query)
+    end
+  end
+end

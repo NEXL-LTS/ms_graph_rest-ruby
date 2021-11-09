@@ -170,6 +170,35 @@ using $filter and $orderBy on another user's box
   end
 ```
 
+#### Get message
+
+reference https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0&tabs=http
+
+get message of own inbox with default select attributes
+
+```ruby
+  message = client.message.get('[ID HERE]')
+
+  puts message.id
+  puts message.subject
+  puts message.sender.email_address.name
+  puts message.sender.email_address.address
+```
+
+getting a message with $select from another user
+
+```ruby
+  message = client.message("users/person@example.com")
+                  .select([:id, :sender, :subject])
+                  .get('[ID HERE]')
+    
+  puts message.id
+  puts message.subject
+  puts message.sender.email_address.name
+  puts message.sender.email_address.address
+```
+
+
 #### Delta messages
 
 https://docs.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0&tabs=http

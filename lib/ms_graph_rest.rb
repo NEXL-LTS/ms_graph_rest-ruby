@@ -9,6 +9,7 @@ require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/messages'
+require_relative 'ms_graph_rest/message'
 require_relative 'ms_graph_rest/messages_delta'
 require_relative 'ms_graph_rest/photos'
 require_relative 'ms_graph_rest/groups'
@@ -160,6 +161,10 @@ module MsGraphRest
 
     def messages(path = 'me')
       Messages.new(path, client: connection)
+    end
+
+    def message(path = 'me')
+      Message.new(path, client: connection)
     end
 
     def messages_delta(path = 'me', folder = 'inbox')
