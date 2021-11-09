@@ -11,8 +11,9 @@ module MsGraphRest
       @query = query
     end
 
-    def get(id, select: nil)
-      Response.new(client.get("#{path}/messages/#{id}", query.merge({ '$select' => select }.compact)))
+    def get(id_or_path, select: nil)
+      get_path = id_or_path.to_s.include?('/') ? id_or_path : "#{path}/messages/#{id_or_path}"
+      Response.new(client.get(get_path, query.merge({ '$select' => select }.compact)))
     end
 
     def select(val)

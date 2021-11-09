@@ -198,6 +198,17 @@ getting a message with $select from another user
   puts message.sender.email_address.address
 ```
 
+getting a message using fullpath
+
+```ruby
+  message = client.message.get("users/person@example.com/messages/idhere")
+    
+  puts message.id
+  puts message.subject
+  puts message.sender.email_address.name
+  puts message.sender.email_address.address
+```
+
 
 #### Delta messages
 

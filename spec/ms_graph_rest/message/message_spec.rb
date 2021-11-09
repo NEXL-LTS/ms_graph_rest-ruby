@@ -24,12 +24,12 @@ module MsGraphRest
     end
 
     describe 'using select' do
-      let(:path) { 'me' }
+      let(:path) { 'users/id' }
       let(:message_id) { 'mi' }
       let(:body) { File.read("#{__dir__}/select.json") }
 
       before do
-        stub_request(:get, "https://graph.microsoft.com/v1.0/me/messages/#{message_id}?$select=internetMessageHeaders")
+        stub_request(:get, "https://graph.microsoft.com/v1.0/users/id/messages/#{message_id}?$select=internetMessageHeaders")
           .to_return(status: 200, body: body, headers: {})
       end
 
@@ -38,6 +38,24 @@ module MsGraphRest
         expect(result.internet_message_headers.size).to eq(4)
         expect(result.internet_message_headers.first)
           .to have_attributes(name: "MIME-Version", value: "1.0")
+      end
+    end
+
+    describe 'using full path' do
+      let(:path) { 'me' }
+      let(:body) { File.read("#{__dir__}/select_full_path.json") }
+      let(:full_path) { 'users/full/messages/path' }
+
+      before do
+        stub_request(:get, "https://graph.microsoft.com/v1.0/#{full_path}?$select=subject,body,bodyPreview,uniqueBody")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        result = message_query.select('subject,body,bodyPreview,uniqueBody').get(full_path)
+
+        expect(result)
+          .to have_attributes(subject: "Welcome to our group!")
       end
     end
   end
