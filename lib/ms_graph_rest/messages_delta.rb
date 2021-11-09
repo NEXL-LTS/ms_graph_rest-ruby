@@ -43,11 +43,13 @@ module MsGraphRest
       @query = query
     end
 
-    def get(select: nil, skiptoken: nil, deltatoken: nil)
+    def get(select: nil, skiptoken: nil, deltatoken: nil, filter: nil, order_by: nil)
       Response.new(client.get("#{path}/mailFolders/#{folder}/messages/delta",
                               query.merge({ '$select' => select,
                                             '$skiptoken' => skiptoken,
-                                            '$deltatoken' => deltatoken }.compact)))
+                                            '$deltatoken' => deltatoken,
+                                            '$filter' => filter,
+                                            '$orderBy' => order_by }.compact)))
     end
 
     def select(val)
