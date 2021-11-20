@@ -94,10 +94,16 @@ module MsGraphRest
     end
   end
 
-  class UnableToResolveUserId < HttpError
+  class HttpServerError < HttpError
   end
 
-  class ResourceUnhealthyError < HttpError
+  class UnableToResolveUserId < HttpServerError
+  end
+
+  class ResourceUnhealthyError < HttpServerError
+  end
+
+  class MailboxStoreUnavailableError < HttpServerError
   end
 
   class ServerErrorCreator
@@ -110,6 +116,7 @@ module MsGraphRest
 
       return UnableToResolveUserId.new(faraday_error) if message == 'Unable to resolve User Id'
       return ResourceUnhealthyError.new(faraday_error) if error_code == 'ResourceUnhealthy'
+      return MailboxStoreUnavailableError.new(faraday_error) if error_code == 'ErrorMailboxStoreUnavailable'
 
       faraday_error
     rescue TypeError, MultiJson::ParseError
