@@ -44,6 +44,9 @@ module MsGraphRest
   class MailboxNotEnabledError < ResourceNotFound
   end
 
+  class ItemNotFoundError < ResourceNotFound
+  end
+
   class NotFoundErrorCreator
     def self.error(faraday_error)
       if faraday_error.response
@@ -53,6 +56,7 @@ module MsGraphRest
 
         return UserNotFound.new(faraday_error) if message == 'User not found'
         return MailboxNotEnabledError.new(faraday_error) if code == 'MailboxNotEnabledForRESTAPI'
+        return ItemNotFoundError.new(faraday_error) if code == 'ErrorItemNotFound'
       end
 
       ResourceNotFound.new(faraday_error)
