@@ -14,8 +14,7 @@ module MsGraphRest
     end
   end
 
-  class Error < StandardError
-  end
+  Error = Class.new(StandardError)
 
   class ParseError < Error
     attr_reader :response
@@ -35,17 +34,10 @@ module MsGraphRest
     end
   end
 
-  class ResourceNotFound < HttpError
-  end
-
-  class UserNotFound < ResourceNotFound
-  end
-
-  class MailboxNotEnabledError < ResourceNotFound
-  end
-
-  class ItemNotFoundError < ResourceNotFound
-  end
+  ResourceNotFound = Class.new(HttpError)
+  UserNotFound = Class.new(ResourceNotFound)
+  MailboxNotEnabledError = Class.new(ResourceNotFound)
+  ItemNotFoundError = Class.new(ResourceNotFound)
 
   class NotFoundErrorCreator
     def self.error(faraday_error)
@@ -65,8 +57,7 @@ module MsGraphRest
     end
   end
 
-  class AuthenticationError < HttpError
-  end
+  AuthenticationError = Class.new(HttpError)
 
   class BadRequestErrorCreator
     def self.error(ms_error)
@@ -78,8 +69,8 @@ module MsGraphRest
     end
   end
 
-  class MailboxConcurrencyLimitError < HttpError
-  end
+  MailboxConcurrencyLimitError = Class.new(HttpError)
+  InvalidAuthenticationTokenError = Class.new(HttpError)
 
   class ClientErrorCreator
     def self.error(faraday_error)
@@ -87,10 +78,12 @@ module MsGraphRest
 
       parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')
       message = parsed_error.dig("error", "message")
+      code = parsed_error.dig("error", "code")
 
       if message == 'Application is over its MailboxConcurrency limit.'
         return MailboxConcurrencyLimitError.new(faraday_error)
       end
+      return InvalidAuthenticationTokenError.new(faraday_error) if code == 'InvalidAuthenticationToken'
 
       faraday_error
     rescue TypeError, MultiJson::ParseError
@@ -98,17 +91,10 @@ module MsGraphRest
     end
   end
 
-  class HttpServerError < HttpError
-  end
-
-  class UnableToResolveUserId < HttpServerError
-  end
-
-  class ResourceUnhealthyError < HttpServerError
-  end
-
-  class MailboxStoreUnavailableError < HttpServerError
-  end
+  HttpServerError = Class.new(HttpError)
+  UnableToResolveUserId = Class.new(HttpServerError)
+  ResourceUnhealthyError = Class.new(HttpServerError)
+  MailboxStoreUnavailableError = Class.new(HttpServerError)
 
   class ServerErrorCreator
     def self.error(faraday_error)

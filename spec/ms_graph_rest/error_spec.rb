@@ -53,6 +53,13 @@ module MsGraphRest
         it { expect(MsGraphRest.wrap_request_error(faraday_error)).to eq(faraday_error) }
       end
 
+      describe 'InvalidAuthenticationTokenError' do
+        let(:body) { { "error" => { "code" => "InvalidAuthenticationToken" } } }
+        let(:faraday_error_class) { Faraday::UnauthorizedError }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(InvalidAuthenticationTokenError) }
+      end
+
       describe 'ClientError' do
         let(:faraday_error_class) { Faraday::ClientError }
 
