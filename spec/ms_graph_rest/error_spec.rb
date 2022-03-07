@@ -103,6 +103,12 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxStoreUnavailableError) }
         end
 
+        context 'when Service Unavailable' do
+          let(:body) { { "error" => { "code" => "UnknownError", "message" => "<h1>503 Service Unavailable</h1>" } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ServiceUnavailableError) }
+        end
+
         context 'when non json body' do
           let(:faraday_error) { faraday_error_class.new StandardError.new, "<html>body</html>" }
           let(:faraday_error_class) { Faraday::TimeoutError }
