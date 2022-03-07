@@ -11,7 +11,7 @@ module MsGraphRest
     it 'can be deleted' do
       result = subscriptions.delete('7f105c7d-2dc5-4530-97cd-4e7ae6534c07')
 
-      expect(result).to eq(true)
+      expect(result).to be(true)
     end
   end
 end
