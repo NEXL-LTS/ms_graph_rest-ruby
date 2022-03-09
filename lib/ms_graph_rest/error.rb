@@ -101,21 +101,24 @@ module MsGraphRest
     def self.error(faraday_error)
       return faraday_error if faraday_error.response.nil?
 
-      raw_body = faraday_error.response[:body]
-      return ServiceUnavailableError.new(faraday_error) if raw_body.to_s.include?('503 Service Unavailable')
-      return ServiceUnavailableError.new(faraday_error) if raw_body.to_s.include?('The service is unavailable')
-
-      parsed_error = MultiJson.load(raw_body || '{}')
-      message = parsed_error.dig("error", "message")
-      error_code = parsed_error.dig("error", "code")
+      message, error_code, status = message_and_code(faraday_error.response)
 
       return UnableToResolveUserId.new(faraday_error) if message == 'Unable to resolve User Id'
       return ResourceUnhealthyError.new(faraday_error) if error_code == 'ResourceUnhealthy'
       return MailboxStoreUnavailableError.new(faraday_error) if error_code == 'ErrorMailboxStoreUnavailable'
+      return ServiceUnavailableError.new(faraday_error) if status.to_s == '503'
 
       faraday_error
+    end
+
+    def self.message_and_code(response)
+      parsed_error = MultiJson.load(response[:body] || '{}')
+      message = parsed_error.dig("error", "message")
+      error_code = parsed_error.dig("error", "code")
+      status = response[:status]
+      [message, error_code, status]
     rescue TypeError, MultiJson::ParseError
-      faraday_error
+      [nil, nil, nil]
     end
   end
 end

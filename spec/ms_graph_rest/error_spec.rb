@@ -9,7 +9,9 @@ module MsGraphRest
     end
 
     describe "#wrap_request_error" do
-      let(:faraday_error) { faraday_error_class.new StandardError.new, { body: body.to_json } }
+      let(:faraday_error) { faraday_error_class.new StandardError.new, { body: body.to_json, status: status } }
+      let(:status) { nil }
+      let(:body) { {} }
 
       describe 'BadRequestError' do
         let(:body) { { "error" => { "code" => "AuthenticationError" } } }
@@ -103,14 +105,8 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxStoreUnavailableError) }
         end
 
-        context 'when Service Unavailable' do
-          let(:body) { { "error" => { "code" => "UnknownError", "message" => "<h1>503 Service Unavailable</h1>" } } }
-
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ServiceUnavailableError) }
-        end
-
-        context 'when Service Unavailable has html body' do
-          let(:body) { '<p>HTTP Error 503. The service is unavailable.</p>' }
+        context 'when status 503' do
+          let(:status) { 503 }
 
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ServiceUnavailableError) }
         end
