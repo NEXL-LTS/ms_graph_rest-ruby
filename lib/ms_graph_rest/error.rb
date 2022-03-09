@@ -112,13 +112,19 @@ module MsGraphRest
     end
 
     def self.message_and_code(response)
-      parsed_error = MultiJson.load(response[:body] || '{}')
-      message = parsed_error.dig("error", "message")
-      error_code = parsed_error.dig("error", "code")
-      status = response[:status]
+      message = nil
+      error_code = nil
+      status = nil
+      begin
+        status = response[:status]
+        message = response[:body]
+        parsed_error = MultiJson.load(response[:body] || '{}')
+        message = parsed_error.dig("error", "message")
+        error_code = parsed_error.dig("error", "code")
+      rescue TypeError, MultiJson::ParseError
+        # nop
+      end
       [message, error_code, status]
-    rescue TypeError, MultiJson::ParseError
-      [nil, nil, nil]
     end
   end
 end
