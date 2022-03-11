@@ -111,6 +111,12 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ServiceUnavailableError) }
         end
 
+        context 'when status 504' do
+          let(:status) { 504 }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(BadGatewayError) }
+        end
+
         context 'when non json body' do
           let(:faraday_error) { faraday_error_class.new StandardError.new, "<html>body</html>" }
           let(:faraday_error_class) { Faraday::TimeoutError }

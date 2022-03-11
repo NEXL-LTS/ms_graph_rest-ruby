@@ -94,8 +94,10 @@ module MsGraphRest
   HttpServerError = Class.new(HttpError)
   UnableToResolveUserId = Class.new(HttpServerError)
   ResourceUnhealthyError = Class.new(HttpServerError)
-  MailboxStoreUnavailableError = Class.new(HttpServerError)
-  ServiceUnavailableError = Class.new(HttpServerError)
+  UnavailableError = Class.new(HttpServerError)
+  MailboxStoreUnavailableError = Class.new(UnavailableError)
+  ServiceUnavailableError = Class.new(UnavailableError)
+  BadGatewayError = Class.new(HttpServerError)
 
   class ServerErrorCreator
     def self.error(faraday_error)
@@ -107,6 +109,7 @@ module MsGraphRest
       return ResourceUnhealthyError.new(faraday_error) if error_code == 'ResourceUnhealthy'
       return MailboxStoreUnavailableError.new(faraday_error) if error_code == 'ErrorMailboxStoreUnavailable'
       return ServiceUnavailableError.new(faraday_error) if status.to_s == '503'
+      return BadGatewayError.new(faraday_error) if status.to_s == '504'
 
       faraday_error
     end
