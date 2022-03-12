@@ -14,10 +14,19 @@ module MsGraphRest
       let(:body) { {} }
 
       describe 'BadRequestError' do
-        let(:body) { { "error" => { "code" => "AuthenticationError" } } }
         let(:faraday_error_class) { Faraday::BadRequestError }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(AuthenticationError) }
+        describe 'AuthenticationError' do
+          let(:body) { { "error" => { "code" => "AuthenticationError" } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(AuthenticationError) }
+        end
+
+        describe 'InvalidGrantError' do
+          let(:body) { { "error" => "invalid_grant" } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(InvalidGrantError) }
+        end
       end
 
       describe 'UserNotFound' do

@@ -57,13 +57,19 @@ module MsGraphRest
     end
   end
 
-  AuthenticationError = Class.new(HttpError)
+  BadRequestError = Class.new(HttpError)
+  AuthenticationError = Class.new(BadRequestError)
+  InvalidGrantError = Class.new(BadRequestError)
 
   class BadRequestErrorCreator
     def self.error(ms_error)
-      ms_error_code = JSON.parse(ms_error.response[:body] || '{}').dig("error", "code")
+      ms_error_code = JSON.parse(ms_error.response[:body] || '{}').dig("error")
+      if ms_error_code.is_a?(Hash)
+        ms_error_code = ms_error_code['code']
+      end
 
       return AuthenticationError.new(ms_error) if ms_error_code == 'AuthenticationError'
+      return InvalidGrantError.new(ms_error) if ms_error_code == 'invalid_grant'
 
       return ms_error
     end
