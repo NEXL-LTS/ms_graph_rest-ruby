@@ -77,9 +77,11 @@ module MsGraphRest
 
   MailboxConcurrencyLimitError = Class.new(HttpError)
   InvalidAuthenticationTokenError = Class.new(HttpError)
+  ForbiddenError = Class.new(HttpError)
 
   class ClientErrorCreator
     def self.error(faraday_error)
+      return ForbiddenError.new(faraday_error) if faraday_error.is_a?(Faraday::ForbiddenError)
       return faraday_error if faraday_error.response.nil?
 
       parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')

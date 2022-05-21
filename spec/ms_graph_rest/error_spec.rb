@@ -80,6 +80,15 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxConcurrencyLimitError) }
         end
 
+        context 'when forbidden error' do
+          let(:faraday_error_class) { Faraday::ForbiddenError }
+
+          let(:body) { nil }
+          let(:status) { '403' }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ForbiddenError) }
+        end
+
         context 'when other error' do
           let(:body) { { "error" => { "code" => "OtherError" } } }
 
