@@ -50,8 +50,15 @@ module MsGraphRest
         it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ItemNotFoundError) }
       end
 
+      describe 'ResourceNotDiscovered' do
+        let(:body) { { "error" => { "code" => "ResourceNotFound", "message" => "Resource could not be discovered." } } }
+        let(:faraday_error_class) { Faraday::ResourceNotFound }
+
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceNotDiscovered) }
+      end
+
       describe 'ResourceNotFound' do
-        let(:body) { { "error" => { "code" => "AuthenticationError" } } }
+        let(:body) { { "error" => { "code" => "ResourceNotFound" } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
 
         it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceNotFound) }
