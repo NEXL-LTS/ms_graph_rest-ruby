@@ -1,75 +1,29 @@
 require 'camel_snake_struct'
 
 module MsGraphRest
-  class CalendarView
-    class Response < CamelSnakeStruct
-      include Enumerable
-
-      def initialize(data)
-        @data = data
-        super(data)
-      end
-
-      def each
-        value.each { |val| yield(val) }
-      end
-
-      def next_get_query
-        return nil unless odata_next_link
-
-        uri = URI.parse(odata_next_link)
-        params = CGI.parse(uri.query)
-        { start_date_time: params["startDateTime"]&.first,
-          end_date_time: params["endDateTime"]&.first,
-          skip: params["$skip"]&.first,
-          top: params["$top"]&.first,
-          select: params["$select"]&.first }.compact
-      end
-
-      def size
-        value.size
-      end
-
-      def to_h
-        to_hash
-      end
+  class CalendarView < ChainableAction
+    class Response < ResponseWithPagination
     end
     Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "")
 
     attr_reader :client, :path, :query
 
-    def initialize(path, client:, query: {})
-      @path = "#{path.to_str}".gsub('//', '/')
-      @path[0] = '' if @path.start_with?('/')
+    # rubocop:disable Lint/MissingSuper
+    def initialize(client:, query: {})
       @client = client
       @query = query
     end
+    # rubocop:enable Lint/MissingSuper
 
-    def get(start_date_time:, end_date_time:, skip: nil, top: nil, select: nil)
+    def get(start_date_time:, end_date_time:, user_id: nil)
       start_date_time = start_date_time.iso8601 if start_date_time.respond_to?(:iso8601)
       end_date_time = end_date_time.iso8601 if end_date_time.respond_to?(:iso8601)
+      path = user_id ? "users/#{user_id}/calendar/calendarView" : "me/calendar/calendarView"
 
-      Response.new(client.get("#{path}/calendarView",
-                              query.merge({ 'startDateTime' => start_date_time,
-                                            'endDateTime' => end_date_time,
-                                            '$skip' => skip,
-                                            '$top' => top,
-                                            '$select' => select }.compact)))
-    end
+      query['startDateTime'] = start_date_time
+      query['endDateTime'] = end_date_time
 
-    def create(options)
-      Response.new(client.post("#{path}", options))
-    end
-
-    def select(val)
-      val = val.map(&:to_s).map { |v| v.camelize(:lower) }.join(',') if val.is_a?(Array)
-      new_with_query(query.merge('$select' => val))
-    end
-
-    private
-
-    def new_with_query(query)
-      self.class.new(path, client: client, query: query)
+      Response.new(client.get(path, query))
     end
   end
 end
