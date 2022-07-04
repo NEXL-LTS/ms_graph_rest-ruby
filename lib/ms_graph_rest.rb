@@ -16,6 +16,7 @@ require_relative 'ms_graph_rest/groups'
 require_relative 'ms_graph_rest/planner_tasks'
 require_relative 'ms_graph_rest/todo_lists'
 require_relative 'ms_graph_rest/todo_list_tasks'
+require_relative 'ms_graph_rest/event'
 
 class Faraday::FileReadAdapter < Faraday::Adapter
   def self.folder=(val)
@@ -169,6 +170,10 @@ module MsGraphRest
 
     def messages_delta(path = 'me', folder = 'inbox')
       MessagesDelta.new(path, folder, client: connection)
+    end
+
+    def event(path)
+      Event.new(path, client: connection)
     end
 
     def groups
