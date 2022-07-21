@@ -25,7 +25,7 @@ module MsGraphRest
     end
   end
 
-  class HttpError < StandardError
+  class HttpError < Error
     attr_reader :response
 
     def initialize(input)
