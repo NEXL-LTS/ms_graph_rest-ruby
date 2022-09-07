@@ -109,6 +109,7 @@ module MsGraphRest
   ServiceUnavailableError = Class.new(UnavailableError)
   BadGatewayError = Class.new(HttpServerError)
   UnknownServerError = Class.new(HttpServerError)
+  ErrorContentConversionFailed = Class.new(HttpServerError)
 
   class ServerErrorCreator
     def self.error(faraday_error)
@@ -122,6 +123,7 @@ module MsGraphRest
       return ServiceUnavailableError.new(faraday_error) if status.to_s == '503'
       return BadGatewayError.new(faraday_error) if status.to_s == '504'
       return UnknownServerError.new(faraday_error) if error_code == 'UnknownError'
+      return ErrorContentConversionFailed.new(faraday_error) if error_code == 'ErrorContentConversionFailed'
 
       faraday_error
     end

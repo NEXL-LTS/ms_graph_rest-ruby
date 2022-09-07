@@ -130,6 +130,12 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxStoreUnavailableError) }
         end
 
+        context 'when ErrorContentConversionFailed' do
+          let(:body) { { "error" => { "code" => "ErrorContentConversionFailed", "message" => "Content conversion failed." } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ErrorContentConversionFailed) }
+        end
+
         context 'when status 503' do
           let(:status) { 503 }
 
