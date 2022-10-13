@@ -10,6 +10,7 @@ require_relative 'ms_graph_rest/calendar_get_schedule'
 require_relative 'ms_graph_rest/calendar_groups'
 require_relative 'ms_graph_rest/calendar_view'
 require_relative 'ms_graph_rest/calendars'
+require_relative 'ms_graph_rest/find_event'
 require_relative 'ms_graph_rest/online_meetings'
 
 require_relative 'ms_graph_rest/error'
@@ -175,6 +176,10 @@ module MsGraphRest
     # @return MsGraphRest::Photos
     def photos
       Photos.new(client: connection)
+    end
+
+    def find_event
+      FindEvent.new(client: connection)
     end
 
     # @return MsGraphRest::CalendarView
