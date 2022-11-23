@@ -19,13 +19,13 @@ module MsGraphRest
         describe 'AuthenticationError' do
           let(:body) { { "error" => { "code" => "AuthenticationError" } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(AuthenticationError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(AuthenticationError) }
         end
 
         describe 'InvalidGrantError' do
           let(:body) { { "error" => "invalid_grant" } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(InvalidGrantError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(InvalidGrantError) }
         end
       end
 
@@ -33,35 +33,35 @@ module MsGraphRest
         let(:body) { { "error" => { "code" => "AuthenticationError", "message" => "User not found" } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(UserNotFound) }
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(UserNotFound) }
       end
 
       describe 'MailboxNotEnabledError' do
         let(:body) { { "error" => { "code" => "MailboxNotEnabledForRESTAPI" } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxNotEnabledError) }
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(MailboxNotEnabledError) }
       end
 
       describe 'ItemNotFoundError' do
         let(:body) { { "error" => { "code" => "ErrorItemNotFound" } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ItemNotFoundError) }
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ItemNotFoundError) }
       end
 
       describe 'ResourceNotDiscovered' do
         let(:body) { { "error" => { "code" => "ResourceNotFound", "message" => "Resource could not be discovered." } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceNotDiscovered) }
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ResourceNotDiscovered) }
       end
 
       describe 'ResourceNotFound' do
         let(:body) { { "error" => { "code" => "ResourceNotFound" } } }
         let(:faraday_error_class) { Faraday::ResourceNotFound }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceNotFound) }
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ResourceNotFound) }
       end
 
       describe 'UnauthorizedError' do
@@ -75,7 +75,7 @@ module MsGraphRest
         let(:body) { { "error" => { "code" => "InvalidAuthenticationToken" } } }
         let(:faraday_error_class) { Faraday::UnauthorizedError }
 
-        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(InvalidAuthenticationTokenError) }
+        it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(InvalidAuthenticationTokenError) }
       end
 
       describe 'ClientError' do
@@ -84,7 +84,7 @@ module MsGraphRest
         context 'when Application is over its MailboxConcurrency limit.' do
           let(:body) { { "error" => { "code" => "ApplicationThrottled", "message" => "Application is over its MailboxConcurrency limit." } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxConcurrencyLimitError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(MailboxConcurrencyLimitError) }
         end
 
         context 'when forbidden error' do
@@ -93,7 +93,7 @@ module MsGraphRest
           let(:body) { nil }
           let(:status) { '403' }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ForbiddenError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ForbiddenError) }
         end
 
         context 'when other error' do
@@ -109,13 +109,13 @@ module MsGraphRest
         context 'when Unable to resolve User Id' do
           let(:body) { { "error" => { "code" => "InternalServerError", "message" => "Unable to resolve User Id" } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(UnableToResolveUserId) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(UnableToResolveUserId) }
         end
 
         context 'when Resource Unhealthy' do
           let(:body) { { "error" => { "code" => "ResourceUnhealthy", "message" => "SystemMemoryProtectionUtilizationMonitor is unhealthy." } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ResourceUnhealthyError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ResourceUnhealthyError) }
         end
 
         context 'when not Unable to resolve User Id' do
@@ -127,31 +127,31 @@ module MsGraphRest
         context 'when Mailbox Store Unavailable' do
           let(:body) { { "error" => { "code" => "ErrorMailboxStoreUnavailable", "message" => "The mailbox database is temporarily unavailable." } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(MailboxStoreUnavailableError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(MailboxStoreUnavailableError) }
         end
 
         context 'when ErrorContentConversionFailed' do
           let(:body) { { "error" => { "code" => "ErrorContentConversionFailed", "message" => "Content conversion failed." } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ErrorContentConversionFailed) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ErrorContentConversionFailed) }
         end
 
         context 'when status 503' do
           let(:status) { 503 }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(ServiceUnavailableError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ServiceUnavailableError) }
         end
 
         context 'when status 504' do
           let(:status) { 504 }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(BadGatewayError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(BadGatewayError) }
         end
 
         context 'when unknown error' do
           let(:body) { { "error" => { "code" => "UnknownError", "message" => "T" } } }
 
-          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_kind_of(UnknownServerError) }
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(UnknownServerError) }
         end
 
         context 'when non json body' do
