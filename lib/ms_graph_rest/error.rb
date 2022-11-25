@@ -34,7 +34,8 @@ module MsGraphRest
     end
   end
 
-  ResourceNotFound = Class.new(HttpError)
+  ClientError = Class.new(HttpError)
+  ResourceNotFound = Class.new(ClientError)
   UserNotFound = Class.new(ResourceNotFound)
   MailboxNotEnabledError = Class.new(ResourceNotFound)
   ItemNotFoundError = Class.new(ResourceNotFound)
@@ -59,7 +60,7 @@ module MsGraphRest
     end
   end
 
-  BadRequestError = Class.new(HttpError)
+  BadRequestError = Class.new(ClientError)
   AuthenticationError = Class.new(BadRequestError)
   InvalidGrantError = Class.new(BadRequestError)
 
@@ -77,15 +78,23 @@ module MsGraphRest
     end
   end
 
-  MailboxConcurrencyLimitError = Class.new(HttpError)
-  InvalidAuthenticationTokenError = Class.new(HttpError)
-  ForbiddenError = Class.new(HttpError)
+  MailboxConcurrencyLimitError = Class.new(ClientError)
+  InvalidAuthenticationTokenError = Class.new(ClientError)
+  ForbiddenError = Class.new(ClientError)
+  RequestTimeoutError = Class.new(ClientError)
 
   class ClientErrorCreator
     def self.error(faraday_error)
       return ForbiddenError.new(faraday_error) if faraday_error.is_a?(Faraday::ForbiddenError)
+      return RequestTimeoutError.new(faraday_error) if faraday_error.response[:status].to_s == '408'
       return faraday_error if faraday_error.response.nil?
 
+      error_from_body(faraday_error) || faraday_error
+    rescue TypeError, MultiJson::ParseError
+      faraday_error
+    end
+
+    def self.error_from_body(faraday_error)
       parsed_error = MultiJson.load(faraday_error.response[:body] || '{}')
       message = parsed_error.dig("error", "message")
       code = parsed_error.dig("error", "code")
@@ -93,11 +102,8 @@ module MsGraphRest
       if message == 'Application is over its MailboxConcurrency limit.'
         return MailboxConcurrencyLimitError.new(faraday_error)
       end
-      return InvalidAuthenticationTokenError.new(faraday_error) if code == 'InvalidAuthenticationToken'
 
-      faraday_error
-    rescue TypeError, MultiJson::ParseError
-      faraday_error
+      InvalidAuthenticationTokenError.new(faraday_error) if code == 'InvalidAuthenticationToken'
     end
   end
 

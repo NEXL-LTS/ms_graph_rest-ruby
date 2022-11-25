@@ -96,6 +96,13 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ForbiddenError) }
         end
 
+        context 'when request timeout error' do
+          let(:body) { {} }
+          let(:status) { '408' }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(RequestTimeoutError) }
+        end
+
         context 'when other error' do
           let(:body) { { "error" => { "code" => "OtherError" } } }
 
