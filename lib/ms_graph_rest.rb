@@ -113,15 +113,21 @@ module MsGraphRest
     def post(path, body)
       response = conn.post(path, body.to_json)
       parse_response(response)
+    rescue Faraday::Error => e
+      raise MsGraphRest.wrap_request_error(e)
     end
 
     def patch(path, body)
       response = conn.patch(path, body.to_json)
       parse_response(response)
+    rescue Faraday::Error => e
+      raise MsGraphRest.wrap_request_error(e)
     end
 
     def delete(path)
       conn.delete(path)
+    rescue Faraday::Error => e
+      raise MsGraphRest.wrap_request_error(e)
     end
 
     private
