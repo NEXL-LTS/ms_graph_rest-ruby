@@ -47,14 +47,13 @@ module MsGraphRest
 
     def get(select: nil, filter: nil, count: nil, top: nil, skip: nil, order_by: nil, search: nil, skiptoken: nil)
       Response.new(client.get("groups/#{group_id}/members", query.merge({ '$skip' => skip,
-                                                      '$search' => search,
-                                                      '$select' => select,
-                                                      '$filter' => filter,
-                                                      '$top' => top,
-                                                      '$orderBy' => order_by,
-                                                      '$count' => count,
-                                                      '$skiptoken' => skiptoken }.compact)
-      ))
+                                                                          '$search' => search,
+                                                                          '$select' => select,
+                                                                          '$filter' => filter,
+                                                                          '$top' => top,
+                                                                          '$orderBy' => order_by,
+                                                                          '$count' => count,
+                                                                          '$skiptoken' => skiptoken }.compact)))
     end
 
     def select(val)

@@ -13,14 +13,14 @@ module MsGraphRest
       end
 
       let(:body) do
-        IO.read(__dir__+'/group_members.json')
+        File.read(__dir__ + '/group_members.json')
       end
 
       it do
         result = group_members.get
         expect(result.size).to eq(19)
         expect(result.first)
-          .to have_attributes(id: "87d349ed-44d7-43e1-9a83-5f2406dee5bd", 
+          .to have_attributes(id: "87d349ed-44d7-43e1-9a83-5f2406dee5bd",
                               business_phones: ["+1 425 555 0109"],
                               display_name: "Adele Vance",
                               given_name: "Adele",
@@ -30,8 +30,7 @@ module MsGraphRest
                               mobile_phone: nil,
                               office_location: "18/2111",
                               preferred_language: "en-US",
-                              user_principal_name: "AdeleV@M365x214355.onmicrosoft.com"
-                             )
+                              user_principal_name: "AdeleV@M365x214355.onmicrosoft.com")
       end
     end
   end
