@@ -17,6 +17,7 @@ require_relative 'ms_graph_rest/planner_tasks'
 require_relative 'ms_graph_rest/todo_lists'
 require_relative 'ms_graph_rest/todo_list_tasks'
 require_relative 'ms_graph_rest/event'
+require_relative 'ms_graph_rest/group_members.rb'
 
 class Faraday::FileReadAdapter < Faraday::Adapter
   def self.folder=(val)
@@ -184,6 +185,10 @@ module MsGraphRest
 
     def groups
       Groups.new(client: connection)
+    end
+
+    def group_members(group_id)
+      GroupMembers.new(client: connection, group_id: group_id)
     end
 
     def planner_tasks(path = 'me/planner/tasks')
