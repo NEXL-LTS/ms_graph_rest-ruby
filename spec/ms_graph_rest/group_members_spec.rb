@@ -7,6 +7,14 @@ module MsGraphRest
     let(:group_members) { client.group_members(group_id) }
 
     describe 'Get all group members' do
+      let(:body) do
+        File.read(__dir__ + '/group_member_response/group_members.json')
+      end
+
+      let(:next_body) do
+        File.read(__dir__ + '/group_member_response/group_members_next.json')
+      end
+
       before do
         stub_request(:get, "https://graph.microsoft.com/v1.0/groups/#{group_id}/members?$top=10")
           .to_return(status: 200, body: body, headers: {})
@@ -15,14 +23,6 @@ module MsGraphRest
 $skiptoken=RFNwdAoAAQAAAAAAAAAAFAAAAPvqzxAdXd9LnQAjIxwK_TMBAAAAAAAAAAAAAAAAAAAXMS4yLjg0MC\
 4xMTM1NTYuMS40LjIzMzEGAAAAAAAByim_TWUbpEG9TbvKE2Y3dgF2AAAAAQEAAAA&$top=10")
           .to_return(status: 200, body: next_body, headers: {})
-      end
-
-      let(:body) do
-        File.read(__dir__ + '/group_members.json')
-      end
-
-      let(:next_body) do
-        File.read(__dir__ + '/group_members_next.json')
       end
 
       it do
