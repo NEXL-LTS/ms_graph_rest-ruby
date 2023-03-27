@@ -45,7 +45,8 @@ module MsGraphRest
       @group_id = group_id
     end
 
-    def get(select: nil, filter: nil, count: nil, top: nil, skip: nil, order_by: nil, search: nil, skiptoken: nil)
+    def get(select: nil, filter: nil, count: nil, top: nil,
+            skip: nil, order_by: nil, search: nil, skiptoken: nil)
       Response.new(client.get("groups/#{group_id}/members", query.merge({ '$skip' => skip,
                                                                           '$search' => search,
                                                                           '$select' => select,
@@ -54,11 +55,6 @@ module MsGraphRest
                                                                           '$orderBy' => order_by,
                                                                           '$count' => count,
                                                                           '$skiptoken' => skiptoken }.compact)))
-    end
-
-    def select(val)
-      val = val.map(&:to_s).map { |v| v.camelize(:lower) }.join(',') if val.is_a?(Array)
-      new_with_query(query.merge('$select' => val))
     end
 
     private
