@@ -1,0 +1,166 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#directoryObjects",
+    "@odata.nextLink": "https://graph.microsoft.com/v1.0/groups/02bd9fd6-8f93-4758-87c3-1fb73740a315/members?$top=10&$skiptoken=RFNwdAoAAQAAAAAAAAAAFAAAAPvqzxAdXd9LnQAjIxwK_TMBAAAAAAAAAAAAAAAAAAAXMS4yLjg0MC4xMTM1NTYuMS40LjIzMzEGAAAAAAAByim_TWUbpEG9TbvKE2Y3dgF2AAAAAQEAAAA",
+    "value": [
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "87d349ed-44d7-43e1-9a83-5f2406dee5bd",
+            "businessPhones": [
+                "+1 425 555 0109"
+            ],
+            "displayName": "Adele Vance",
+            "givenName": "Adele",
+            "jobTitle": "Product Marketing Manager",
+            "mail": "AdeleV@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "18/2111",
+            "preferredLanguage": "en-US",
+            "surname": "Vance",
+            "userPrincipalName": "AdeleV@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "626cbf8c-5dde-46b0-8385-9e40d64736fe",
+            "businessPhones": [
+                "+1 502 555 0102"
+            ],
+            "displayName": "Johanna Lorenz",
+            "givenName": "Johanna",
+            "jobTitle": "CVP Engineering",
+            "mail": "JohannaL@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "23/2102",
+            "preferredLanguage": "en-US",
+            "surname": "Lorenz",
+            "userPrincipalName": "JohannaL@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "40079818-3808-4585-903b-02605f061225",
+            "businessPhones": [
+                "+1 502 555 0144"
+            ],
+            "displayName": "Patti Fernandez",
+            "givenName": "Patti",
+            "jobTitle": "President",
+            "mail": "PattiF@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "15/1102",
+            "preferredLanguage": "en-US",
+            "surname": "Fernandez",
+            "userPrincipalName": "PattiF@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "074e56ea-0b50-4461-89e5-c67ae14a2c0b",
+            "businessPhones": [
+                "+1 913 555 0101"
+            ],
+            "displayName": "Lee Gu",
+            "givenName": "Lee",
+            "jobTitle": "CVP Research & Development",
+            "mail": "LeeG@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "23/3101",
+            "preferredLanguage": "en-US",
+            "surname": "Gu",
+            "userPrincipalName": "LeeG@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "16cfe710-1625-4806-9990-91b8f0afee35",
+            "businessPhones": [
+                "+1 205 555 0103"
+            ],
+            "displayName": "Enrico Cattaneo",
+            "givenName": "Enrico",
+            "jobTitle": "Attorney",
+            "mail": "EnricoC@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "14/1102",
+            "preferredLanguage": "en-US",
+            "surname": "Cattaneo",
+            "userPrincipalName": "EnricoC@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "089a6bb8-e8cb-492c-aa41-c078aa0b5120",
+            "businessPhones": [
+                "+1 206 555 0105"
+            ],
+            "displayName": "Nestor Wilke",
+            "givenName": "Nestor",
+            "jobTitle": "CVP Operations",
+            "mail": "NestorW@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "36/2121",
+            "preferredLanguage": "en-US",
+            "surname": "Wilke",
+            "userPrincipalName": "NestorW@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "2804bc07-1e1f-4938-9085-ce6d756a32d2",
+            "businessPhones": [
+                "+81 345550115"
+            ],
+            "displayName": "Emily Braun",
+            "givenName": "Emily",
+            "jobTitle": "Budget Analyst",
+            "mail": "EmilyB@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "97/2302",
+            "preferredLanguage": "en-US",
+            "surname": "Braun",
+            "userPrincipalName": "EmilyB@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "b66ecf79-a093-4d51-86e0-efcc4531f37a",
+            "businessPhones": [
+                "+1 858 555 0111"
+            ],
+            "displayName": "Christie Cline",
+            "givenName": "Christie",
+            "jobTitle": "Sr. VP Sales & Marketing",
+            "mail": "ChristieC@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "131/2105",
+            "preferredLanguage": "en-US",
+            "surname": "Cline",
+            "userPrincipalName": "ChristieC@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "8b209ac8-08ff-4ef1-896d-3b9fde0bbf04",
+            "businessPhones": [
+                "+1 980 555 0101"
+            ],
+            "displayName": "Joni Sherman",
+            "givenName": "Joni",
+            "jobTitle": "Paralegal",
+            "mail": "JoniS@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "20/1109",
+            "preferredLanguage": "en-US",
+            "surname": "Sherman",
+            "userPrincipalName": "JoniS@M365x214355.onmicrosoft.com"
+        },
+        {
+            "@odata.type": "#microsoft.graph.user",
+            "id": "4782e723-f4f4-4af3-a76e-25e3bab0d896",
+            "businessPhones": [
+                "+1 858 555 0110"
+            ],
+            "displayName": "Alex Wilber",
+            "givenName": "Alex",
+            "jobTitle": "Marketing Assistant",
+            "mail": "AlexW@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "131/1104",
+            "preferredLanguage": "en-US",
+            "surname": "Wilber",
+            "userPrincipalName": "AlexW@M365x214355.onmicrosoft.com"
+        }
+    ]
+}
