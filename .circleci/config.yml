@@ -1,6 +1,11 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@2.0.0 
+
+commands:
+  run-all:
+    steps:
+      - run: bundle install
+      - run: bin/rubocop
+      - run: bin/rspec
 
 jobs:
   min-rspec:
@@ -8,27 +13,15 @@ jobs:
       - image: cimg/ruby:2.5
     environment:
       GEM_VERSIONS: min
-    executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - run: bundle install
-      - ruby/rubocop-check
-      - ruby/rspec-test
+      - run-all
   max-rspec:
     docker:
       - image: cimg/ruby:3.2
-    executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - run: bundle install
-      - ruby/rubocop-check
-      - ruby/rspec-test
+      - run-all
 
 workflows:
   build:
