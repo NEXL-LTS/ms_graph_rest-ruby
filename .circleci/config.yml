@@ -1,27 +1,27 @@
 version: 2.1
 
 commands:
-  run-all:
+  run-rspec:
     steps:
       - run: bundle install
-      - run: bin/rubocop
       - run: bin/rspec
 
 jobs:
   min-rspec:
     docker:
-      - image: cimg/ruby:2.6
+      - image: cimg/ruby:2.5
     environment:
       GEM_VERSIONS: min
     steps:
       - checkout
-      - run-all
+      - run-rspec
   max-rspec:
     docker:
       - image: cimg/ruby:3.2
     steps:
       - checkout
-      - run-all
+      - run-rspec
+      - run: bin/rubocop
 
 workflows:
   build:
