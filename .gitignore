@@ -9,6 +9,7 @@
 
 /.rspec_status
 /gems.locked
+/Gemfile.lock
 /vendor/bundle
 /.vscode
 /spec/tmp

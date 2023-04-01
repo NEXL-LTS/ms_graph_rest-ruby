@@ -13,7 +13,7 @@ gem 'simplecov'
 gem 'webmock'
 
 if ENV['GEM_VERSIONS'] == 'min'
-  gem 'faraday', '~> 0.10.0'
-  gem 'hashie', '~> 3.1.0'
-  gem 'multi_json', '~> 1.4.0'
+  gem 'faraday', '~> 1.0.0'
+  gem 'hashie', '~> 3.5.0'
+  gem 'multi_json', '~> 1.9.0'
 end

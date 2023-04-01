@@ -1,19 +1,30 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
+
+commands:
+  run-rspec:
+    steps:
+      - run: bundle install
+      - run: bin/rspec
 
 jobs:
-  build:
+  min-rspec:
     docker:
-      - image: circleci/ruby:2.5.7-stretch-node
-    executor: ruby/default
+      - image: cimg/ruby:2.5
+    environment:
+      GEM_VERSIONS: min
     steps:
       - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
-      - run:
-          command: bin/rubocop
-      - run:
-          command: bin/rspec
+      - run-rspec
+  max-rspec:
+    docker:
+      - image: cimg/ruby:3.2
+    steps:
+      - checkout
+      - run-rspec
+      - run: bin/rubocop
+
+workflows:
+  build:
+    jobs:
+      - min-rspec
+      - max-rspec
