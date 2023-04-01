@@ -10,7 +10,7 @@ commands:
 jobs:
   min-rspec:
     docker:
-      - image: cimg/ruby:2.5
+      - image: cimg/ruby:2.6
     environment:
       GEM_VERSIONS: min
     steps:
