@@ -63,16 +63,22 @@ module MsGraphRest
   BadRequestError = Class.new(ClientError)
   AuthenticationError = Class.new(BadRequestError)
   InvalidGrantError = Class.new(BadRequestError)
+  NamedPropertyNotFoundError = Class.new(BadRequestError)
 
   class BadRequestErrorCreator
     def self.error(ms_error)
       ms_error_code = JSON.parse(ms_error.response[:body] || '{}').dig("error")
+      ms_error_msg = nil
       if ms_error_code.is_a?(Hash)
-        ms_error_code = ms_error_code['code']
+        ms_error_msg = ms_error_code["message"]
+        ms_error_code = ms_error_code["code"]
       end
 
       return AuthenticationError.new(ms_error) if ms_error_code == 'AuthenticationError'
       return InvalidGrantError.new(ms_error) if ms_error_code == 'invalid_grant'
+      if ms_error_code == "RequestBroker-ParseUri" && ms_error_msg&.include?("not find a property")
+        return NamedPropertyNotFoundError.new(ms_error)
+      end
 
       return ms_error
     end

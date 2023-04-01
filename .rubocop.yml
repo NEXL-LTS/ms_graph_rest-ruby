@@ -12,7 +12,7 @@ Style:
   Enabled: false
 
 Bundler/GemFilename:
-  EnforcedStyle: gems.rb
+  EnforcedStyle: Gemfile
 
 Metrics/AbcSize:
   Max: 25

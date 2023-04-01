@@ -27,6 +27,24 @@ module MsGraphRest
 
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(InvalidGrantError) }
         end
+
+        describe "NamedPropertyNotFoundError" do
+          let(:body) do
+            {
+              "error" => {
+                "code" => "RequestBroker-ParseUri",
+                "message" =>
+                  "Could not find a property named 'Flag' on type 'Microsoft.OutlookServices.Message'"
+              }
+            }
+          end
+
+          it do
+            expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(
+              NamedPropertyNotFoundError
+            )
+          end
+        end
       end
 
       describe 'UserNotFound' do
