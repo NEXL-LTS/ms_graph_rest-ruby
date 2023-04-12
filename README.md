@@ -315,6 +315,50 @@ getting next link query params
   next_result = client.calendar_view.get(**result.next_get_query)
 ```
 
+#### Get event
+
+reference https://learn.microsoft.com/en-us/graph/api/event-get?view=graph-rest-1.0&tabs=http
+
+```ruby
+  event = client.event('me').get('AAMkADI1N2RjMDRhLTk1MjgtNGIyYS1hMTVkLTEwMGU0OWZmMTllNgBGAAAAAAC3Ox_2oD1vT7uXOvj6e7DVBwBsifJx7olQRY2oHt-3enBxAAAAAAENAABsifJx7olQRY2oHt-3enBxAABW5KLQAAA=')
+  puts event.id
+  puts event.odata_etag
+  puts event.subject
+  # ....
+  event.attendees.each do |attendee|
+    puts attendee.type
+    puts attendee.status.response
+    puts attendee.status.time
+    puts attendee.email_address.name
+    puts attendee.email_address.address
+  end
+```
+
+#### Get recurring event instances
+
+reference https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0&tabs=http
+
+```ruby
+  events = client.event('me').get_instances(
+    'AAMkADI1N2RjMDRhLTk1MjgtNGIyYS1hMTVkLTEwMGU0OWZmMTllNgBGAAAAAAC3Ox_2oD1vT7uXOvj6e7DVBwBsifJx7olQRY2oHt-3enBxAAAAAAENAABsifJx7olQRY2oHt-3enBxAABW5KLQAAA=',
+    start_date_time: '2020-01-01T19:00:00-08:00', end_date_time: '2020-01-02T19:00:00-08:00')
+  )
+
+  events.each do |event|
+    puts event.id
+    puts event.odata_etag
+    puts event.subject
+    # ....
+    event.attendees.each do |attendee|
+      puts attendee.type
+      puts attendee.status.response
+      puts attendee.status.time
+      puts attendee.email_address.name
+      puts attendee.email_address.address
+    end
+  end
+```
+
 ### Groups
 
 #### List Groups
