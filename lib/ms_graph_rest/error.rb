@@ -84,10 +84,12 @@ module MsGraphRest
     end
   end
 
-  MailboxConcurrencyLimitError = Class.new(ClientError)
   InvalidAuthenticationTokenError = Class.new(ClientError)
   ForbiddenError = Class.new(ClientError)
   RequestTimeoutError = Class.new(ClientError)
+  ApplicationThrottledError = Class.new(ClientError)
+  MailboxConcurrencyLimitError = Class.new(ApplicationThrottledError)
+  ApplicationOverRequestLimitError = Class.new(ApplicationThrottledError)
 
   class ClientErrorCreator
     def self.error(faraday_error)
@@ -105,11 +107,21 @@ module MsGraphRest
       message = parsed_error.dig("error", "message")
       code = parsed_error.dig("error", "code")
 
-      if message == 'Application is over its MailboxConcurrency limit.'
-        return MailboxConcurrencyLimitError.new(faraday_error)
+      if code == 'ApplicationThrottled'
+        return application_throttled_error_class(message).new(faraday_error)
       end
 
       InvalidAuthenticationTokenError.new(faraday_error) if code == 'InvalidAuthenticationToken'
+    end
+
+    def self.application_throttled_error_class(message)
+      if message == 'Application is over its MailboxConcurrency limit.'
+        MailboxConcurrencyLimitError
+      elsif message == 'Application is over its Request limit.'
+        ApplicationOverRequestLimitError
+      else
+        ApplicationThrottledError
+      end
     end
   end
 

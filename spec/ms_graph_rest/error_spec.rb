@@ -105,6 +105,12 @@ module MsGraphRest
           it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(MailboxConcurrencyLimitError) }
         end
 
+        context 'when Application is over Request Limit' do
+          let(:body) { { "error" => { "code" => "ApplicationThrottled", "message" => "Application is over its Request limit." } } }
+
+          it { expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(ApplicationOverRequestLimitError) }
+        end
+
         context 'when forbidden error' do
           let(:faraday_error_class) { Faraday::ForbiddenError }
 
