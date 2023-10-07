@@ -92,6 +92,44 @@ result.each do |user|
 end
 ```
 
+### Personal contact
+
+#### List
+
+Reference : https://learn.microsoft.com/en-us/graph/api/user-list-contacts
+
+```ruby
+# Get all contacts
+result = client.contacts.get
+result.each do |contact|
+  puts contact.id
+  puts contact.given_name
+  puts contact.surname
+  puts contact.title
+  puts contact.department
+  puts contact.office_location
+  puts contact.profession
+  puts contact.home_phones
+  puts contact.mobile_phone
+  puts contact.email_addresses.first&.address
+end
+
+# Get a user account using a sign-in name
+result = client.contacts.filter("emailAddresses/any(a:a/address eq 'j.smith@yahoo.com')")
+                        .select("displayName,id")
+                        .get
+result.each do |user|
+  puts user.display_name
+end
+# Get Next Page
+if result.next_get_query
+  next_result = client.contacts.get(**result.next_get_query)
+  next_result.each do |user|
+    puts user.display_name
+  end
+end
+```
+
 ### Subscriptions
 
 #### Create

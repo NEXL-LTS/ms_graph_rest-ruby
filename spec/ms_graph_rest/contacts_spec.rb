@@ -1,0 +1,38 @@
+require 'spec_helper'
+
+module MsGraphRest
+  RSpec.describe 'Messages' do
+    let(:client) { MsGraphRest.new_client(access_token: "123") }
+    let(:contacts) { client.contacts(path) }
+
+    describe 'Get top 10 contacts with select' do
+      let(:path) { 'me' }
+      let(:body) { File.read("#{__dir__}/contacts_default.json") }
+
+      before do
+        params = "$select=givenName,surname"
+        stub_request(:get, "https://graph.microsoft.com/v1.0/me/contacts?#{params}")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        result = contacts.select([:given_name, :surname]).get
+        expect(result.size).to eq(10)
+        expect(result.first).to have_attributes(given_name: "Alex", surname: "Wilber")
+        expect(result.first.email_addresses.first)
+          .to have_attributes(address: "Alex@FineArtSchool.net", name: "Alex@FineArtSchool.net")
+      end
+
+      it 'returns for next link' do
+        result = contacts.select([:given_name, :surname]).get
+        expect(result.odata_next_link).to eq("https://graph.microsoft.com/v1.0/me/contacts?%24skip=10")
+        expect(result.next_get_query).to eq(skip: "10")
+
+        params = "$skip=10"
+        stub_request(:get, "https://graph.microsoft.com/v1.0/me/contacts?#{params}")
+          .to_return(status: 200, body: "{}", headers: {})
+        contacts.get(**result.next_get_query)
+      end
+    end
+  end
+end

@@ -8,6 +8,7 @@ require_relative 'ms_graph_rest/error'
 require_relative 'ms_graph_rest/users'
 require_relative 'ms_graph_rest/subscriptions'
 require_relative 'ms_graph_rest/calendar_view'
+require_relative 'ms_graph_rest/contacts'
 require_relative 'ms_graph_rest/messages'
 require_relative 'ms_graph_rest/message'
 require_relative 'ms_graph_rest/messages_delta'
@@ -61,7 +62,7 @@ class Faraday::FileReadAdapter < Faraday::Adapter
   end
 
   def filename(method, path, query)
-    query = "default" if query.blank?
+    query = "default" if query.nil? || query.empty?
     "#{self.class.folder}/#{method}#{path.tr("/", "_")}/#{query}.json"
   end
 end
@@ -149,6 +150,10 @@ module MsGraphRest
 
     def users
       Users.new(client: connection)
+    end
+
+    def contacts(path = 'me')
+      Contacts.new(path, client: connection)
     end
 
     def subscriptions
