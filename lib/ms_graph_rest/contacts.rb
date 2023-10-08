@@ -3,15 +3,9 @@ require 'camel_snake_struct'
 module MsGraphRest
   class Contacts
     class Response < CamelSnakeStruct
-      include Enumerable
-
       def initialize(data)
         @data = data
         super(data)
-      end
-
-      def each
-        value.each { |val| yield(val) }
       end
 
       def next_get_query
@@ -25,16 +19,9 @@ module MsGraphRest
           order_by: params["$orderBy"]&.first,
           top: params["$top"]&.first }.compact
       end
-
-      def size
-        value.size
-      end
-
-      def to_h
-        to_hash
-      end
     end
     Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "")
+    Response.example(MultiJson.load(File.read("#{__dir__}/contacts_example.json")))
 
     attr_reader :client, :path, :query
 
@@ -60,6 +47,10 @@ module MsGraphRest
 
     def filter(val)
       new_with_query(query.merge('$filter' => val))
+    end
+
+    def filter_email(val)
+      new_with_query(query.merge('$filter' => "emailAddresses/any(a:a/address eq '#{val.to_str}')"))
     end
 
     def order_by(val)

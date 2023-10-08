@@ -1,0 +1,69 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('48d31887-5fad-4d73-a9f5-3c356e68a038')/contacts",
+    "value": [
+        {
+            "@odata.etag": "W/\"EQAAABYAAAAiIsqMbYjsT5e/T7KzowPTAAUcB47V\"",
+            "id": "AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OABGAAAAAAAiQ8W967B7TKBjgx9rVEURBwAiIsqMbYjsT5e-T7KzowPTAAAAAAEOAAAiIsqMbYjsT5e-T7KzowPTAAAYbuK-AAA=",
+            "createdDateTime": "2017-09-04T15:54:01Z",
+            "lastModifiedDateTime": "2023-01-11T01:28:34Z",
+            "changeKey": "EQAAABYAAAAiIsqMbYjsT5e/T7KzowPTAAUcB47V",
+            "categories": ["example"],
+            "parentFolderId": "AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OAAuAAAAAAAiQ8W967B7TKBjgx9rVEURAQAiIsqMbYjsT5e-T7KzowPTAAAAAAEOAAA=",
+            "birthday": "2014-01-01T00:00:00Z",
+            "fileAs": "",
+            "displayName": "Alex Wilber",
+            "givenName": "Alex",
+            "initials": "",
+            "middleName": "",
+            "nickName": "",
+            "surname": "Wilber",
+            "title": "",
+            "yomiGivenName": "",
+            "yomiSurname": "",
+            "yomiCompanyName": "",
+            "generation": "",
+            "imAddresses": [""],
+            "jobTitle": "",
+            "companyName": "",
+            "department": "",
+            "officeLocation": "",
+            "profession": "",
+            "businessHomePage": "",
+            "assistantName": "",
+            "manager": "",
+            "homePhones": [""],
+            "mobilePhone": "",
+            "businessPhones": [""],
+            "spouseName": "",
+            "personalNotes": "",
+            "children": [""],
+            "emailAddresses": [
+                {
+                    "name": "Alex@FineArtSchool.net",
+                    "address": "Alex@FineArtSchool.net"
+                }
+            ],
+            "homeAddress": {  
+                "city": "string",
+                "countryOrRegion": "string",
+                "postalCode": "string",
+                "state": "string",
+                "street": "string"
+            },
+            "businessAddress": {  
+                "city": "string",
+                "countryOrRegion": "string",
+                "postalCode": "string",
+                "state": "string",
+                "street": "string"
+            },
+            "otherAddress": {
+                "city": "string",
+                "countryOrRegion": "string",
+                "postalCode": "string",
+                "state": "string",
+                "street": "string"
+            }
+        }
+    ]
+}

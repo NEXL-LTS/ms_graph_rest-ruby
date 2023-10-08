@@ -17,9 +17,9 @@ module MsGraphRest
 
       it do
         result = contacts.select([:given_name, :surname]).get
-        expect(result.size).to eq(10)
-        expect(result.first).to have_attributes(given_name: "Alex", surname: "Wilber")
-        expect(result.first.email_addresses.first)
+        expect(result.value.size).to eq(10)
+        expect(result.value.first).to have_attributes(given_name: "Alex", surname: "Wilber")
+        expect(result.value.first.email_addresses.first)
           .to have_attributes(address: "Alex@FineArtSchool.net", name: "Alex@FineArtSchool.net")
       end
 
@@ -32,6 +32,22 @@ module MsGraphRest
         stub_request(:get, "https://graph.microsoft.com/v1.0/me/contacts?#{params}")
           .to_return(status: 200, body: "{}", headers: {})
         contacts.get(**result.next_get_query)
+      end
+    end
+
+    describe 'finding by email' do
+      let(:path) { 'me' }
+      let(:body) { File.read("#{__dir__}/contacts_filtered.json") }
+
+      before do
+        params = "$filter=emailAddresses/any(a:a/address+eq+'Alex@FineArtSchool.net')"
+        stub_request(:get, "https://graph.microsoft.com/v1.0/me/contacts?#{params}")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        result = contacts.filter_email('Alex@FineArtSchool.net').get
+        expect(result.value.size).to eq(1)
       end
     end
   end
