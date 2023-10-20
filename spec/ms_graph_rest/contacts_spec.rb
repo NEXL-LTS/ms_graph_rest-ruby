@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module MsGraphRest
-  RSpec.describe 'Messages' do
+  RSpec.describe 'Contacts' do
     let(:client) { MsGraphRest.new_client(access_token: "123") }
     let(:contacts) { client.contacts(path) }
 
@@ -40,13 +40,13 @@ module MsGraphRest
       let(:body) { File.read("#{__dir__}/contacts_filtered.json") }
 
       before do
-        params = "$filter=emailAddresses/any(a:a/address+eq+'Alex@FineArtSchool.net')"
+        params = "$filter=emailAddresses/any(a:a/address+eq+'Alex''d@FineArtSchool.net')"
         stub_request(:get, "https://graph.microsoft.com/v1.0/me/contacts?#{params}")
           .to_return(status: 200, body: body, headers: {})
       end
 
       it do
-        result = contacts.filter_email('Alex@FineArtSchool.net').get
+        result = contacts.filter_email('Alex\'d@FineArtSchool.net').get
         expect(result.value.size).to eq(1)
       end
     end

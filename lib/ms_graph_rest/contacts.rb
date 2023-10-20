@@ -50,7 +50,8 @@ module MsGraphRest
     end
 
     def filter_email(val)
-      new_with_query(query.merge('$filter' => "emailAddresses/any(a:a/address eq '#{val.to_str}')"))
+      address = val.to_str.gsub("'", "''")
+      new_with_query(query.merge('$filter' => "emailAddresses/any(a:a/address eq '#{address}')"))
     end
 
     def order_by(val)
