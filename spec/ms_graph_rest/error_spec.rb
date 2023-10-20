@@ -45,6 +45,24 @@ module MsGraphRest
             )
           end
         end
+
+        describe "InvalidFilterClauseError" do
+          let(:body) do
+            {
+              "error" => {
+                "code" => "BadRequest",
+                "message" =>
+                  "Invalid filter clause: ')' or ',' expected at position 41 in 'emailAddresses/any(a:a/address eq 'mia.o'connor@minterellison.com')'"
+              }
+            }
+          end
+
+          it do
+            expect(MsGraphRest.wrap_request_error(faraday_error)).to be_a(
+              InvalidFilterClauseError
+            )
+          end
+        end
       end
 
       describe 'UserNotFound' do
