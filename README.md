@@ -130,6 +130,27 @@ if result.next_get_query
 end
 ```
 
+#### Update
+
+Reference : https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
+
+```ruby
+# Get all contacts
+result = client.contacts.update(id, { given_name: 'Alex' })
+result.each do |contact|
+  puts contact.id
+  puts contact.given_name
+  puts contact.surname
+  puts contact.title
+  puts contact.department
+  puts contact.office_location
+  puts contact.profession
+  puts contact.home_phones
+  puts contact.mobile_phone
+  puts contact.email_addresses.first&.address
+end
+```
+
 ### Subscriptions
 
 #### Create
