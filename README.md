@@ -130,6 +130,44 @@ if result.next_get_query
 end
 ```
 
+#### Create
+
+Reference : https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+
+```ruby
+# Create a contact
+result = client.contacts.create({ given_name: 'Alex', surname: "Wilber" })
+puts result.id
+puts result.given_name
+puts result.surname
+puts result.title
+puts result.department
+puts result.office_location
+puts result.profession
+puts result.home_phones
+puts result.mobile_phone
+puts result.email_addresses.first&.address
+```
+
+#### Update
+
+Reference : https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
+
+```ruby
+# Update a contact
+result = client.contacts.update(id, { given_name: 'Alex', surname: "Wilber" })
+puts result.id
+puts result.given_name
+puts result.surname
+puts result.title
+puts result.department
+puts result.office_location
+puts result.profession
+puts result.home_phones
+puts result.mobile_phone
+puts result.email_addresses.first&.address
+```
+
 ### Subscriptions
 
 #### Create

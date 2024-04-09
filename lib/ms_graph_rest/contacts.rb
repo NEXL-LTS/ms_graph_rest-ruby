@@ -23,6 +23,80 @@ module MsGraphRest
     Response.example('value' => [], "@odata.context" => "", "@odata.nextLink" => "")
     Response.example(MultiJson.load(File.read("#{__dir__}/contacts_example.json")))
 
+    class SaveOptions < Hashie::Trash
+      include Hashie::Extensions::IndifferentAccess
+
+      property :assistantName, from: :assistant_name
+      property :birthday
+      property :businessAddress, from: :business_address
+      property :businessHomePage, from: :business_home_page
+      property :businessPhones, from: :business_phones
+      property :categories
+      property :children
+      property :companyName, from: :company_name
+      property :department
+      property :displayName, from: :display_name
+      property :emailAddresses, from: :email_addresses
+      property :fileAs, from: :file_as
+      property :generation
+      property :givenName, from: :given_name
+      property :homeAddress, from: :home_address
+      property :homePhones, from: :home_phones
+      property :imAddresses, from: :im_addresses
+      property :initials
+      property :jobTitle, from: :job_title
+      property :manager
+      property :middleName, from: :middle_name
+      property :mobilePhone, from: :mobile_phone
+      property :nickName, from: :nick_name
+      property :officeLocation, from: :office_location
+      property :otherAddress, from: :other_address
+      property :parentFolderId, from: :parent_folder_id
+      property :personalNotes, from: :personal_notes
+      property :profession
+      property :spouseName, from: :spouse_name
+      property :surname
+      property :title
+    end
+
+    class SaveResponse < Hashie::Trash
+      include Hashie::Extensions::IndifferentAccess
+      include Hashie::Extensions::IgnoreUndeclared
+
+      property :id
+      property :assistant_name, from: :assistantName
+      property :birthday
+      property :business_address, from: :businessAddress
+      property :business_home_page, from: :businessHomePage
+      property :business_phones, from: :businessPhones
+      property :categories
+      property :children
+      property :company_name, from: :companyName
+      property :department
+      property :display_name, from: :displayName
+      property :email_addresses, from: :emailAddresses
+      property :file_as, from: :fileAs
+      property :generation
+      property :given_name, from: :givenName
+      property :home_address, from: :homeAddress
+      property :home_phones, from: :homePhones
+      property :im_addresses, from: :imAddresses
+      property :initials
+      property :job_title, from: :jobTitle
+      property :manager
+      property :middle_name, from: :middleName
+      property :mobile_phone, from: :mobilePhone
+      property :nick_name, from: :nickName
+      property :office_location, from: :officeLocation
+      property :other_address, from: :otherAddress
+      property :parent_folder_id, from: :parentFolderId
+      property :personal_notes, from: :personalNotes
+      property :profession
+      property :spouse_name, from: :spouseName
+      property :surname
+      property :title
+    end
+
     attr_reader :client, :path, :query
 
     def initialize(path, client:, query: {})
@@ -38,6 +112,16 @@ module MsGraphRest
                                                                 '$filter' => filter,
                                                                 '$top' => top,
                                                                 '$orderBy' => order_by }.compact)))
+    end
+
+    def update(id, options)
+      options = SaveOptions.new(options.to_hash)
+      SaveResponse.new(client.patch("#{path}/contacts/#{id.to_str}", options))
+    end
+
+    def create(options)
+      options = SaveOptions.new(options.to_hash)
+      SaveResponse.new(client.post("#{path}/contacts/", options))
     end
 
     def select(val)

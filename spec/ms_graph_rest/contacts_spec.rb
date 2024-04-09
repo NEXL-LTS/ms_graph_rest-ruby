@@ -35,6 +35,40 @@ module MsGraphRest
       end
     end
 
+    describe 'Create contact' do
+      let(:path) { 'me' }
+      let(:contact_id) { 'AAMkAGI2THk0AAA=' }
+      let(:body) { File.read("#{__dir__}/update_contact_example.json") }
+      let(:payload) { { given_name: "Alex", surname: "Wilber" } }
+
+      before do
+        stub_request(:post, "https://graph.microsoft.com/v1.0/me/contacts/")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        result = contacts.create(payload)
+        expect(result).to have_attributes(given_name: "Alex", surname: "Wilber")
+      end
+    end
+
+    describe 'Update contact' do
+      let(:path) { 'me' }
+      let(:contact_id) { 'AAMkAGI2THk0AAA=' }
+      let(:body) { File.read("#{__dir__}/update_contact_example.json") }
+      let(:payload) { { given_name: "Alex", surname: "Wilber" } }
+
+      before do
+        stub_request(:patch, "https://graph.microsoft.com/v1.0/me/contacts/#{contact_id}")
+          .to_return(status: 200, body: body, headers: {})
+      end
+
+      it do
+        result = contacts.update(contact_id, payload)
+        expect(result).to have_attributes(given_name: "Alex", surname: "Wilber")
+      end
+    end
+
     describe 'finding by email' do
       let(:path) { 'me' }
       let(:body) { File.read("#{__dir__}/contacts_filtered.json") }
