@@ -96,7 +96,6 @@ module MsGraphRest
       property :surname
       property :title
     end
-    # SaveResponse.example(MultiJson.load(File.read("#{__dir__}/update_contact_example.json")))
 
     attr_reader :client, :path, :query
 
@@ -118,6 +117,11 @@ module MsGraphRest
     def update(id, options)
       options = SaveOptions.new(options.to_hash)
       SaveResponse.new(client.patch("#{path}/contacts/#{id.to_str}", options))
+    end
+
+    def create(options)
+      options = SaveOptions.new(options.to_hash)
+      SaveResponse.new(client.post("#{path}/contacts/", options))
     end
 
     def select(val)
