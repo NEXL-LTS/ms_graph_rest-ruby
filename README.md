@@ -135,7 +135,7 @@ end
 Reference : https://learn.microsoft.com/en-us/graph/api/contact-update?view=graph-rest-1.0
 
 ```ruby
-# Get all contacts
+# Update a contact
 result = client.contacts.update(id, { given_name: 'Alex' })
 puts result.id
 puts result.given_name
