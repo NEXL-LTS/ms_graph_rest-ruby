@@ -137,18 +137,16 @@ Reference : https://learn.microsoft.com/en-us/graph/api/contact-update?view=grap
 ```ruby
 # Get all contacts
 result = client.contacts.update(id, { given_name: 'Alex' })
-result.each do |contact|
-  puts contact.id
-  puts contact.given_name
-  puts contact.surname
-  puts contact.title
-  puts contact.department
-  puts contact.office_location
-  puts contact.profession
-  puts contact.home_phones
-  puts contact.mobile_phone
-  puts contact.email_addresses.first&.address
-end
+puts result.id
+puts result.given_name
+puts result.surname
+puts result.title
+puts result.department
+puts result.office_location
+puts result.profession
+puts result.home_phones
+puts result.mobile_phone
+puts result.email_addresses.first&.address
 ```
 
 ### Subscriptions
