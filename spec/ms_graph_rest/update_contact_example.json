@@ -1,0 +1,61 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('48d31887-5fad-4d73-a9f5-3c356e68a038')/contact/AAMkAGI2THk0AAA%3D",
+    "id": "AAMkAGI2THk0AAA=",
+    "createdDateTime": "2014-10-19T23:08:24Z",
+    "lastModifiedDateTime": "2014-10-19T23:08:24Z",
+    "changeKey": "EQAAABYAAACd9nJ/tVysQos2hTfspaWRAAADTIa4",
+    "categories": [],
+    "parentFolderId": "AAMkAGI2AAEOAAA=",
+    "birthday": "1974-07-22",
+    "fileAs": "Fort, Garth",
+    "displayName": "Garth Fort",
+    "givenName": "Alex",
+    "initials": "G.F.",
+    "middleName": null,
+    "nickName": "Garth",
+    "surname": "Wilber",
+    "title": null,
+    "yomiGivenName": null,
+    "yomiSurname": null,
+    "yomiCompanyName": null,
+    "generation": null,
+    "emailAddresses": [
+        {
+        "name": "Garth",
+        "address": "garth@contoso.com"
+        }
+    ],
+    "imAddresses": [
+        "sip:garthf@contoso.com"
+    ],
+    "jobTitle": "Web Marketing Manager",
+    "companyName": "Contoso, Inc.",
+    "department": "Sales & Marketing",
+    "officeLocation": "20/1101",
+    "profession": null,
+    "businessHomePage": "https://www.contoso.com",
+    "assistantName": null,
+    "manager": null,
+    "homePhones": [],
+    "mobilePhone": null,
+    "businessPhones": [
+        "+1 918 555 0101"
+    ],
+    "homeAddress": {
+        "street": "123 Some street",
+        "city": "Seattle",
+        "state": "WA",
+        "postalCode": "98121"
+    },
+    "businessAddress": {
+        "street": "10 Contoso Way",
+        "city": "Redmond",
+        "state": "WA",
+        "countryOrRegion": "USA",
+        "postalCode": "98075"
+    },
+    "otherAddress": {},
+    "spouseName": null,
+    "personalNotes": null,
+    "children": []
+}
