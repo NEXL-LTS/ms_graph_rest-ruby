@@ -48,7 +48,6 @@ module MsGraphRest
 
       it do
         result = contacts.update(contact_id, payload)
-        byebug
         expect(result).to have_attributes(given_name: "Alex", surname: "Wilber")
       end
     end
